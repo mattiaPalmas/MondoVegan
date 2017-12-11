@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Mondo Vegan</string>
+
+
+    <!--Travel-->
+    <string name="i_am_vegan">I am Vegan</string>
+    <string name="i_dont_eat">I don\'t eat</string>
+    <string name="i_eat">I eat</string>
+    <string name="meat">Meat</string>
+    <string name="fish">Fish</string>
+    <string name="eggs">Eggs</string>
+    <string name="honey">Honey</string>
+    <string name="milk">Milk</string>
+    <string name="butter">Butter</string>
+    <string name="cream">Cream</string>
+    <string name="dairy_product">Dairy products</string>
+    <string name="fruit">Fruit</string>
+    <string name="vegetables">Vegetables</string>
+    <string name="tubers">Tubers</string>
+    <string name="rice">Rice</string>
+    <string name="tofu">Tofu</string>
+    <string name="pasta_no_eggs">Pasta with no eggs</string>
+    <string name="bread_no_milk_or_eggs">Bread with no milk or eggs</string>
+    <string name="legumes">Legumes</string>
+    <string name="seeds">Seeds</string>
+    <string name="dried_fruit">Dried fruit</string>
+
+</resources>

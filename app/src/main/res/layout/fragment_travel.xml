@@ -1,0 +1,373 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="horizontal"
+    tools:context="com.exerciseapp.mattiapalmas.solovegan.TravelFragment">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageButton
+                    android:id="@+id/english_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gb" />
+
+                <TextView
+                    android:id="@+id/english_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="English"
+                    android:textColor="#000000" />
+
+
+                <ImageButton
+                    android:id="@+id/italian_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/it" />
+
+                <TextView
+                    android:id="@+id/italian_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Italian"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/chinese_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cn" />
+
+                <TextView
+                    android:id="@+id/chinese_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Chinese"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/german_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/de" />
+
+                <TextView
+                    android:id="@+id/german_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="German"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/french_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/fr" />
+
+                <TextView
+                    android:id="@+id/french_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="French"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/danish_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dk" />
+
+                <TextView
+                    android:id="@+id/danish_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Danish"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/spanishImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/es" />
+
+                <TextView
+                    android:id="@+id/spanish_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Spanish"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/greek_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gr" />
+
+                <TextView
+                    android:id="@+id/greek_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Greek"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/polish_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/id" />
+
+                <TextView
+                    android:id="@+id/polish_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Polish"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/hindi_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/in" />
+
+                <TextView
+                    android:id="@+id/hindi_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Hindi"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/japanese_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/jp" />
+
+                <TextView
+                    android:id="@+id/japanese_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Japanese"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/portuguese_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/pt" />
+
+                <TextView
+                    android:id="@+id/portuguese_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Portuguese"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/russian_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ru" />
+
+                <TextView
+                    android:id="@+id/russian_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Russian"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/thai_image_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/th" />
+
+                <TextView
+                    android:id="@+id/thai_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="Thai"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/grigioTèVerde">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20pt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/i_am_vegan_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:text="I am vegan"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:textColor="@color/giada"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/i_am_vegan_speaker"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/speaker"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20pt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/i_dont_eat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:text="I don't eat"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:textColor="@color/zafferanoProfondo" />
+
+                <ImageButton
+                    android:id="@+id/i_dont_eat_speaker"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/speaker"/>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/list_dont_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20pt"
+                android:gravity="center"
+                android:text="- Meat \n- Fish\n- Eggs\n- Honey \n- Milk \n- Butter \n- Cream \n- Dairy products" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20pt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/i_eat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:text="I eat"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:textColor="@color/zafferanoProfondo" />
+
+                <ImageButton
+                    android:id="@+id/i_eat_speaker"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/speaker"/>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/list_do_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20pt"
+                android:gravity="center"
+                android:paddingBottom="20dp"
+                android:text="- Fruit \n- Vegetables \n- Tubers \n- Rice \n- Tofu\n - Pasta with no Eggs\n - Bread with no milk or eggs\n - Legumes\n - Seeds\n- Dried fruit" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

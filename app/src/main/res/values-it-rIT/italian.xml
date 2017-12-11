@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Mondo Vegan</string>
+
+
+    <!--Travel-->
+    <string name="i_am_vegan">Io sono Vegano</string>
+    <string name="i_dont_eat">Io non mangio</string>
+    <string name="i_eat">I mangio</string>
+    <string name="meat">Carne</string>
+    <string name="fish">Pesce</string>
+    <string name="eggs">Uova</string>
+    <string name="honey">Miele</string>
+    <string name="milk">Latte</string>
+    <string name="butter">Burro</string>
+    <string name="cream">Panna</string>
+    <string name="dairy_product">Prodotti lattiero-caseari</string>
+    <string name="fruit">Frutta</string>
+    <string name="vegetables">Verdura</string>
+    <string name="tubers">Tuberi</string>
+    <string name="rice">Riso</string>
+    <string name="tofu">Tofu</string>
+    <string name="pasta_no_eggs">Pasta senza uova</string>
+    <string name="bread_no_milk_or_eggs">Pane senza latte o uova</string>
+    <string name="legumes">Legumi</string>
+    <string name="seeds">Semi</string>
+    <string name="dried_fruit">Frutta secca</string>
+
+</resources>
