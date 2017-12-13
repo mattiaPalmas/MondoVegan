@@ -340,7 +340,7 @@ public class TravelFragment extends Fragment {
                                 ")\n- Crème (" + getString(R.string.cream) +
                                 ")\n- Produits laitiers (" + getString(R.string.dairy_product) + ")");
 
-                iEatTextView.setText("I eat (" + getString(R.string.i_eat) + ")");
+                iEatTextView.setText("Je mange (" + getString(R.string.i_eat) + ")");
 
                 listIEatTextView.setText(
                         "Fruits (" + getString(R.string.fruit) +
@@ -893,24 +893,37 @@ public class TravelFragment extends Fragment {
                 switch (languageIndex){
                     case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan);
                     break;
-                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegano_it);
                     break;
-                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_chinese);
                     break;
-                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_german);
                     break;
-                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_fr);
                     break;
-                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_danish);
                     break;
-                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan);
+                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan_es);
                     break;
+                    case 7 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan_es);
+                        break;
+                    case 8 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_polish);
+                        break;
+                    case 9 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_hindi);
+                        break;
+                    case 10 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_jp);
+                        break;
+                    case 11 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_portuguese);
+                        break;
+                    case 12 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_russian);
+                        break;
+                    case 13 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan_es);
+                        break;
 
                 }
 
                 if (mp != null){
                     mp.start();
-                    mp.release();
                 }
             }
         });
@@ -919,13 +932,37 @@ public class TravelFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 switch (languageIndex){
-                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan);
+                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_en);
                         break;
-                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_non_mangio_it);
+                    break;
+                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_chinese);
+                        break;
+                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_german);
+                        break;
+                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_fr);
+                        break;
+                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_danish);
+                        break;
+                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.no_puedo_comer_es);
+                        break;
+                    case 7 : mp = MediaPlayer.create(getContext(),R.raw.no_puedo_comer_es);
+                        break;
+                    case 8 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_polish);
+                        break;
+                    case 9 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_hindi);
+                        break;
+                    case 10 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_jp);
+                        break;
+                    case 11 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_portuguese);
+                        break;
+                    case 12 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_russian);
+                        break;
+                    case 13 : mp = MediaPlayer.create(getContext(),R.raw.no_puedo_comer_es);
+                        break;
                 }
 
                 mp.start();
-                mp.release();
             }
         });
 
@@ -933,14 +970,42 @@ public class TravelFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 switch (languageIndex){
-                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan);
+                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_eat_en);
                         break;
-                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegana);
+                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_mangio_it);
+                    break;
+                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_chinese);
+                        break;
+                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_german);
+                        break;
+                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_fr);
+                        break;
+                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_danish);
+                        break;
+                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.puedo_comer_es);
+                        break;
+                    case 7 : mp = MediaPlayer.create(getContext(),R.raw.puedo_comer_es);
+                        break;
+                    case 8 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_polish);
+                        break;
+                    case 9 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_hindi);
+                        break;
+                    case 10 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_jp);
+                        break;
+                    case 11 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_portuguese);
+                        break;
+                    case 12 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_russian);
+                        break;
+                    case 13 : mp = MediaPlayer.create(getContext(),R.raw.puedo_comer_es);
+                        break;
                 }
 
                 mp.start();
-                mp.release();
             }
         });
+
+        if (mp!= null){
+            mp.release();
+        }
     }
 }
