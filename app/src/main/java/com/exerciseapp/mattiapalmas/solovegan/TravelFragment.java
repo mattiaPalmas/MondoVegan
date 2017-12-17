@@ -37,11 +37,11 @@ public class TravelFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    protected View mView;
+    private View mView;
     private TextView englishTextView, italianTextView, chineseTextView, germanTextView, frenchTextView, danishTextView, spanishTextView, greekTextView, polishTextView, hindiTextView, japaneseTextView, portugueseTextView, russianTextView, thaiTextView;
     private TextView iAmVeganTextView, iDontEatTextView, listIDontEatTextiew, iEatTextView, listIEatTextView;
     private ImageView englishButton, italianButton, chineseButton, germanButton, frenchButton, danishButton, spanishButton, greekButton, polishButton, hindiButton, japaneseButton, portugueseButton, russianButton, thaiButton;
-    private ImageButton iAmVeganSpeaker,iDontEatSpeaker,iEatSpeaker;
+    private ImageButton iAmVeganSpeaker, iDontEatSpeaker, iEatSpeaker;
     private MediaPlayer mp;
 
     private int languageIndex;
@@ -91,7 +91,6 @@ public class TravelFragment extends Fragment {
 
         return view;
     }
-
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -184,7 +183,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=0;
+                languageIndex = 0;
                 markFlagSelected(englishButton);
                 iAmVeganTextView.setText("I am Vegan (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("I don't eat (" + getString(R.string.i_dont_eat) + ")");
@@ -219,7 +218,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=1;
+                languageIndex = 1;
                 markFlagSelected(italianButton);
                 iAmVeganTextView.setText("Io sono Vegano (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Io non mangio (" + getString(R.string.i_dont_eat) + ")");
@@ -254,7 +253,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=2;
+                languageIndex = 2;
                 markFlagSelected(chineseButton);
                 iAmVeganTextView.setText("我是純素食者 (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("我不吃 (" + getString(R.string.i_dont_eat) + ")");
@@ -289,7 +288,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=3;
+                languageIndex = 3;
                 markFlagSelected(germanButton);
                 iAmVeganTextView.setText("Ich bin Veganer (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Ich will nicht essen (" + getString(R.string.i_dont_eat) + ")");
@@ -325,7 +324,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=4;
+                languageIndex = 4;
                 markFlagSelected(frenchButton);
                 iAmVeganTextView.setText("Je suis Vegan (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Je ne mange pas (" + getString(R.string.i_dont_eat) + ")");
@@ -360,7 +359,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=5;
+                languageIndex = 5;
                 markFlagSelected(danishButton);
                 iAmVeganTextView.setText("Jeg er veganer (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Jeg spiser ikke (" + getString(R.string.i_dont_eat) + ")");
@@ -395,7 +394,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=6;
+                languageIndex = 6;
                 markFlagSelected(spanishButton);
                 iAmVeganTextView.setText("Yo soy Vegan (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("No puedo comer (" + getString(R.string.i_dont_eat) + ")");
@@ -430,7 +429,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=7;
+                languageIndex = 7;
                 markFlagSelected(greekButton);
                 iAmVeganTextView.setText("Είμαι για χορτοφάγους (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Δεν μπορώ να φάω (" + getString(R.string.i_dont_eat) + ")");
@@ -465,7 +464,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=8;
+                languageIndex = 8;
                 markFlagSelected(polishButton);
                 iAmVeganTextView.setText("Jestem Vegan (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Nie jem (" + getString(R.string.i_dont_eat) + ")");
@@ -500,7 +499,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=9;
+                languageIndex = 9;
                 markFlagSelected(hindiButton);
                 iAmVeganTextView.setText("मु३ो Vegan है। (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("मॅँ नहीं खाया (" + getString(R.string.i_dont_eat) + ")");
@@ -534,7 +533,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=10;
+                languageIndex = 10;
                 markFlagSelected(japaneseButton);
                 iAmVeganTextView.setText("私は完全菜食主義者です (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("私は食べてはいけない (" + getString(R.string.i_dont_eat) + ")");
@@ -569,7 +568,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=11;
+                languageIndex = 11;
                 markFlagSelected(portugueseButton);
                 iAmVeganTextView.setText("Eu sou Vegan (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Eu não comer (" + getString(R.string.i_dont_eat) + ")");
@@ -604,7 +603,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=12;
+                languageIndex = 12;
                 markFlagSelected(russianButton);
                 iAmVeganTextView.setText("Я веган (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("Я не ем (" + getString(R.string.i_dont_eat) + ")");
@@ -639,7 +638,7 @@ public class TravelFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                languageIndex=13;
+                languageIndex = 13;
                 markFlagSelected(thaiButton);
                 iAmVeganTextView.setText("ฉันเป็นมังสวิรัติ (" + getString(R.string.i_am_vegan) + ")");
                 iDontEatTextView.setText("ฉันไม่กิน (" + getString(R.string.i_dont_eat) + ")");
@@ -890,39 +889,53 @@ public class TravelFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                switch (languageIndex){
-                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan);
-                    break;
-                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_sono_vegano_it);
-                    break;
-                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_chinese);
-                    break;
-                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_german);
-                    break;
-                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_fr);
-                    break;
-                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_danish);
-                    break;
-                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan_es);
-                    break;
-                    case 7 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan_es);
+                switch (languageIndex) {
+                    case 0:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan);
                         break;
-                    case 8 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_polish);
+                    case 1:
+                        mp = MediaPlayer.create(getContext(), R.raw.io_sono_vegano_it);
                         break;
-                    case 9 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_hindi);
+                    case 2:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_chinese);
                         break;
-                    case 10 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_jp);
+                    case 3:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_german);
                         break;
-                    case 11 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_portuguese);
+                    case 4:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_fr);
                         break;
-                    case 12 : mp = MediaPlayer.create(getContext(),R.raw.i_am_vegan_russian);
+                    case 5:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_danish);
                         break;
-                    case 13 : mp = MediaPlayer.create(getContext(),R.raw.yo_soy_vegan_es);
+                    case 6:
+                        mp = MediaPlayer.create(getContext(), R.raw.yo_soy_vegan_es);
+                        break;
+                    case 7:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_greek);
+                        break;
+                    case 8:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_polish);
+                        break;
+                    case 9:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_hindi);
+                        break;
+                    case 10:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_jp);
+                        break;
+                    case 11:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_portuguese);
+                        break;
+                    case 12:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_am_vegan_russian);
+                        break;
+                    case 13:
+                        mp = MediaPlayer.create(getContext(), R.raw.yo_soy_vegan_es);
                         break;
 
                 }
 
-                if (mp != null){
+                if (mp != null) {
                     mp.start();
                 }
             }
@@ -931,34 +944,48 @@ public class TravelFragment extends Fragment {
         iDontEatSpeaker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (languageIndex){
-                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_en);
+                switch (languageIndex) {
+                    case 0:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_en);
                         break;
-                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_non_mangio_it);
-                    break;
-                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_chinese);
+                    case 1:
+                        mp = MediaPlayer.create(getContext(), R.raw.io_non_mangio_it);
                         break;
-                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_german);
+                    case 2:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_chinese);
                         break;
-                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_fr);
+                    case 3:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_german);
                         break;
-                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_danish);
+                    case 4:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_fr);
                         break;
-                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.no_puedo_comer_es);
+                    case 5:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_danish);
                         break;
-                    case 7 : mp = MediaPlayer.create(getContext(),R.raw.no_puedo_comer_es);
+                    case 6:
+                        mp = MediaPlayer.create(getContext(), R.raw.no_puedo_comer_es);
                         break;
-                    case 8 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_polish);
+                    case 7:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_greek);
                         break;
-                    case 9 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_hindi);
+                    case 8:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_polish);
                         break;
-                    case 10 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_jp);
+                    case 9:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_hindi);
                         break;
-                    case 11 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_portuguese);
+                    case 10:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_jp);
                         break;
-                    case 12 : mp = MediaPlayer.create(getContext(),R.raw.i_dont_eat_russian);
+                    case 11:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_portuguese);
                         break;
-                    case 13 : mp = MediaPlayer.create(getContext(),R.raw.no_puedo_comer_es);
+                    case 12:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_dont_eat_russian);
+                        break;
+                    case 13:
+                        mp = MediaPlayer.create(getContext(), R.raw.no_puedo_comer_es);
                         break;
                 }
 
@@ -969,34 +996,48 @@ public class TravelFragment extends Fragment {
         iEatSpeaker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (languageIndex){
-                    case 0 :  mp = MediaPlayer.create(getContext(),R.raw.i_eat_en);
+                switch (languageIndex) {
+                    case 0:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_en);
                         break;
-                    case 1 : mp = MediaPlayer.create(getContext(),R.raw.io_mangio_it);
-                    break;
-                    case 2 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_chinese);
+                    case 1:
+                        mp = MediaPlayer.create(getContext(), R.raw.io_mangio_it);
                         break;
-                    case 3 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_german);
+                    case 2:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_chinese);
                         break;
-                    case 4 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_fr);
+                    case 3:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_german);
                         break;
-                    case 5 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_danish);
+                    case 4:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_fr);
                         break;
-                    case 6 : mp = MediaPlayer.create(getContext(),R.raw.puedo_comer_es);
+                    case 5:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_danish);
                         break;
-                    case 7 : mp = MediaPlayer.create(getContext(),R.raw.puedo_comer_es);
+                    case 6:
+                        mp = MediaPlayer.create(getContext(), R.raw.puedo_comer_es);
                         break;
-                    case 8 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_polish);
+                    case 7:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_greek);
                         break;
-                    case 9 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_hindi);
+                    case 8:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_polish);
                         break;
-                    case 10 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_jp);
+                    case 9:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_hindi);
                         break;
-                    case 11 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_portuguese);
+                    case 10:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_jp);
                         break;
-                    case 12 : mp = MediaPlayer.create(getContext(),R.raw.i_eat_russian);
+                    case 11:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_portuguese);
                         break;
-                    case 13 : mp = MediaPlayer.create(getContext(),R.raw.puedo_comer_es);
+                    case 12:
+                        mp = MediaPlayer.create(getContext(), R.raw.i_eat_russian);
+                        break;
+                    case 13:
+                        mp = MediaPlayer.create(getContext(), R.raw.puedo_comer_es);
                         break;
                 }
 
@@ -1004,7 +1045,7 @@ public class TravelFragment extends Fragment {
             }
         });
 
-        if (mp!= null){
+        if (mp != null) {
             mp.release();
         }
     }

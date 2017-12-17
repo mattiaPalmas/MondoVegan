@@ -7,18 +7,20 @@
     android:orientation="vertical"
     tools:context="com.exerciseapp.mattiapalmas.solovegan.MainActivity">
 
-    <include layout="@layout/logo_top"
+    <include
+        layout="@layout/logo_top"
         android:layout_width="match_parent"
         android:layout_height="80dp"></include>
 
-    <include layout="@layout/main_menu"
+    <include
+        layout="@layout/main_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

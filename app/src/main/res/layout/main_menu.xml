@@ -71,6 +71,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/components_clickable_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"

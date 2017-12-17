@@ -25,4 +25,8 @@
     <string name="seeds">Semi</string>
     <string name="dried_fruit">Frutta secca</string>
 
+
+    <!--Components-->
+    <string name="search">Search</string>
+
 </resources>
