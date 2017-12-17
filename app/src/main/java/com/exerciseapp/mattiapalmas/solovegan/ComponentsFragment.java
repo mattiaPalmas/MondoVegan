@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_2;
 import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_7;
 import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_NAME;
@@ -110,8 +111,6 @@ public class ComponentsFragment extends Fragment {
     }
 
 
-
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -150,7 +149,6 @@ public class ComponentsFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 
 
     private void initVariables() {
@@ -259,7 +257,7 @@ public class ComponentsFragment extends Fragment {
                 componentsData = myDataBase.onSearchApply(searchText);
                 setAdapterListView(componentsData);
 
-                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
                 return true;
             }
@@ -271,7 +269,10 @@ public class ComponentsFragment extends Fragment {
                     setAdapterListView(componentsData);
                 } else {
                     componentsData = myDataBase.onSearchApply(s);
-                    setAdapterListView(componentsData);
+                    if (componentsData.size() == 0) {
+                        componentsData.add("No components found");
+                    }
+                        setAdapterListView(componentsData);
                 }
                 return false;
             }
@@ -286,10 +287,10 @@ public class ComponentsFragment extends Fragment {
 
     private void setOnListItemClicked() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Object obj = listView.getAdapter().getItem(position);
-                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + obj.toString()+ "'");
+                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + obj.toString() + "'");
 
                 nameComponentTextView.setText(componentsData.get(0));
                 descriptionTextView.setText(componentsData.get(1));
@@ -300,17 +301,15 @@ public class ComponentsFragment extends Fragment {
                 map.put("can_be_both", R.drawable.can_be_both);
 
 
-                if (componentsData.get(2).equals("1")){
+                if (componentsData.get(2).equals("1")) {
                     imageViewComp.setImageResource(map.get("vegan"));
                     isVeganTextView.setText("This component is Vegan");
                     isVeganTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
-                }
-                else if (componentsData.get(3).equals("1")){
+                } else if (componentsData.get(3).equals("1")) {
                     isVeganTextView.setTextColor(getResources().getColor(R.color.red));
                     isVeganTextView.setText("This component is NOT Vegan");
                     imageViewComp.setImageResource(map.get("not_vegan"));
-                }
-                else{
+                } else {
                     isVeganTextView.setTextColor(getResources().getColor(R.color.zafferanoProfondo));
                     isVeganTextView.setText("This component CAN BE BOTH Vegan or Not");
                     imageViewComp.setImageResource(map.get("not_vegan"));
