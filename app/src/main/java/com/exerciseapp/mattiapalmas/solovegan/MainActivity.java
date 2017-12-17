@@ -1,16 +1,14 @@
 package com.exerciseapp.mattiapalmas.solovegan;
 
-import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.SearchView;
+
 
 public class MainActivity extends AppCompatActivity implements ScanFragment.OnFragmentInteractionListener, TravelFragment.OnFragmentInteractionListener, ComponentsFragment.OnFragmentInteractionListener {
 
@@ -107,6 +105,4 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
             myDataBase.insertData("Fabrics", "Test fabrics", false,true,false,"fabrics");
         }
     }
-
-
 }
