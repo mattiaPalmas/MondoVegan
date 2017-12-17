@@ -67,24 +67,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public ArrayList<String> getAllRecordsName() {
+    public ArrayList<String> getRecordsFromDataBase(String query) {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        ArrayList<String> componentNames = new ArrayList<>();
-        if (cursor.getCount() > 0) {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                cursor.moveToNext();
-                componentNames.add(cursor.getString(1));
-            }
-        }
-        cursor.close();
-        database.close();
-        return componentNames;
-    }
-
-    public ArrayList<String> getFoodsRecordsName() {
-        SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food'", null);
+        Cursor cursor = database.rawQuery(query, null);
         ArrayList<String> componentNames = new ArrayList<>();
         if (cursor.getCount() > 0) {
             for (int i = 0; i < cursor.getCount(); i++) {
@@ -105,6 +90,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             for (int i = 0; i < cursor.getCount(); i++) {
                 cursor.moveToNext();
                 componentNames.add(cursor.getString(1));
+            }
+        }
+        cursor.close();
+        database.close();
+        return componentNames;
+    }
+
+    public ArrayList<String> getDetailsComponent(String query){
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query, null);
+        ArrayList<String> componentNames = new ArrayList<>();
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                componentNames.add(cursor.getString(1));
+                componentNames.add(cursor.getString(2));
+                componentNames.add(cursor.getString(3));
+                componentNames.add(cursor.getString(4));
+                componentNames.add(cursor.getString(5));
+
             }
         }
         cursor.close();

@@ -54,9 +54,15 @@
         android:layout_height="wrap_content"
         android:background="@color/grigioTèVerde"></SearchView>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey" />
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
+
 
 </LinearLayout>

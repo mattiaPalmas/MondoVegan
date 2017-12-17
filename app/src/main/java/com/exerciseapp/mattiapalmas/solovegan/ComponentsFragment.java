@@ -6,22 +6,28 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_2;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_7;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_NAME;
 
 
 /**
@@ -46,10 +52,15 @@ public class ComponentsFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ArrayAdapter<String> adapter;
     private ListView listView;
-    private ArrayList<String> componentsName;
+    private ArrayList<String> componentsData;
     private DatabaseHelper myDataBase;
     private SearchView searchView;
     private TextView allSubMenu, foodSubMenu, fabricsSubMenu, productsSubMenu;
+
+    private TextView nameComponentTextView, descriptionTextView, isVeganTextView;
+    private ImageView imageViewComp;
+    private LinearLayout mainLayout, componentSelectLayout;
+    private ImageButton backImageButton;
 
     public ComponentsFragment() {
         // Required empty public constructor
@@ -94,8 +105,11 @@ public class ComponentsFragment extends Fragment {
         //getAllData();
         onSearchViewClicked();
         onSubMenuClicked();
+        setOnListItemClicked();
         return view;
     }
+
+
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -138,9 +152,10 @@ public class ComponentsFragment extends Fragment {
     }
 
 
+
     private void initVariables() {
         listView = mView.findViewById(R.id.list_view);
-        componentsName = new ArrayList<>();
+        componentsData = new ArrayList<>();
         myDataBase = new DatabaseHelper(getContext());
         searchView = mView.findViewById(R.id.search_view);
 
@@ -148,11 +163,20 @@ public class ComponentsFragment extends Fragment {
         foodSubMenu = mView.findViewById(R.id.food_submenu);
         fabricsSubMenu = mView.findViewById(R.id.fabrics_submenu);
         productsSubMenu = mView.findViewById(R.id.products_submenu);
+
+        mainLayout = getActivity().findViewById(R.id.main_layout);
+        componentSelectLayout = getActivity().findViewById(R.id.component_select_layout);
+        imageViewComp = getActivity().findViewById(R.id.image_view_comp);
+        nameComponentTextView = getActivity().findViewById(R.id.name_component_text_view);
+        descriptionTextView = getActivity().findViewById(R.id.description_text_view);
+        isVeganTextView = getActivity().findViewById(R.id.is_vegan_text_view);
+        backImageButton = getActivity().findViewById(R.id.back_image_button);
+
     }
 
     private void setListComponents() {
-        componentsName = myDataBase.getAllRecordsName();
-        setAdapterListView(componentsName);
+        componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
+        setAdapterListView(componentsData);
     }
 
     public void getAllData() {
@@ -198,30 +222,32 @@ public class ComponentsFragment extends Fragment {
         allSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                componentsName = myDataBase.getAllRecordsName();
-                setAdapterListView(componentsName);
+                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
+                setAdapterListView(componentsData);
             }
         });
 
         foodSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                componentsName = myDataBase.getFoodsRecordsName();
-                setAdapterListView(componentsName);
+                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food'");
+                setAdapterListView(componentsData);
             }
         });
 
         fabricsSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'fabrics'");
+                setAdapterListView(componentsData);
             }
         });
 
         productsSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'product'");
+                setAdapterListView(componentsData);
             }
         });
     }
@@ -230,8 +256,8 @@ public class ComponentsFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String searchText) {
-                componentsName = myDataBase.onSearchApply(searchText);
-                setAdapterListView(componentsName);
+                componentsData = myDataBase.onSearchApply(searchText);
+                setAdapterListView(componentsData);
 
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
@@ -241,11 +267,11 @@ public class ComponentsFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 if (s.length() == 0) {
-                    componentsName = myDataBase.getAllRecordsName();
-                    setAdapterListView(componentsName);
+                    componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
+                    setAdapterListView(componentsData);
                 } else {
-                    componentsName = myDataBase.onSearchApply(s);
-                    setAdapterListView(componentsName);
+                    componentsData = myDataBase.onSearchApply(s);
+                    setAdapterListView(componentsData);
                 }
                 return false;
             }
@@ -256,5 +282,51 @@ public class ComponentsFragment extends Fragment {
         adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, R.id.itemTextView, arrayStrings);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void setOnListItemClicked() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                // When clicked, show a toast with the TextView text
+                Object obj = listView.getAdapter().getItem(position);
+                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + obj.toString()+ "'");
+
+                nameComponentTextView.setText(componentsData.get(0));
+                descriptionTextView.setText(componentsData.get(1));
+
+                Map<String, Integer> map = new HashMap<String, Integer>();
+                map.put("vegan", R.drawable.v_vegan);
+                map.put("not_vegan", R.drawable.not_vegan);
+                map.put("can_be_both", R.drawable.can_be_both);
+
+
+                if (componentsData.get(2).equals("1")){
+                    imageViewComp.setImageResource(map.get("vegan"));
+                    isVeganTextView.setText("This component is Vegan");
+                    isVeganTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
+                }
+                else if (componentsData.get(3).equals("1")){
+                    isVeganTextView.setTextColor(getResources().getColor(R.color.red));
+                    isVeganTextView.setText("This component is NOT Vegan");
+                    imageViewComp.setImageResource(map.get("not_vegan"));
+                }
+                else{
+                    isVeganTextView.setTextColor(getResources().getColor(R.color.zafferanoProfondo));
+                    isVeganTextView.setText("This component CAN BE BOTH Vegan or Not");
+                    imageViewComp.setImageResource(map.get("not_vegan"));
+                }
+
+                backImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mainLayout.setVisibility(View.VISIBLE);
+                        componentSelectLayout.setVisibility(View.GONE);
+                    }
+                });
+
+                mainLayout.setVisibility(View.GONE);
+                componentSelectLayout.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }

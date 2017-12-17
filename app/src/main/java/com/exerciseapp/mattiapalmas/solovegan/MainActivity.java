@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements ScanFragment.OnFragmentInteractionListener, TravelFragment.OnFragmentInteractionListener, ComponentsFragment.OnFragmentInteractionListener {
 
-    LinearLayout scanLayout, travelLayout, componentsLayout;
+    LinearLayout scanLayout, travelLayout, componentsLayout, mainLayout, componentSelectLayout;
     final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
     DatabaseHelper myDataBase;
 
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
         travelLayout = findViewById(R.id.travel_clickable_layout);
         componentsLayout = findViewById(R.id.components_clickable_layout);
 
+        componentSelectLayout = findViewById(R.id.component_select_layout);
+        mainLayout = findViewById(R.id.main_layout);
         myDataBase = new DatabaseHelper(this);
     }
 
@@ -84,6 +86,16 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (componentSelectLayout.getVisibility() == View.VISIBLE){
+            mainLayout.setVisibility(View.VISIBLE);
+            componentsLayout.setVisibility(View.GONE);
+            return;
+        }
+        super.onBackPressed();
+    }
+
     private void setUpDataBase() {
         Cursor res = myDataBase.getAllData();
         if (res.getCount() == 0) {
@@ -91,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
             myDataBase.insertData("Acrylic", "a synthetic fabric", true, false, false, "fabrics");
             myDataBase.insertData("Aertex", "a trademark for a loosely woven cotton fabric that is used to make shirts and underwear", true, false, false, "fabrics");
             myDataBase.insertData("Acetate (B)", " Vitamin A",false,false, true,"food");
+            myDataBase.insertData("Product", "Test product", false, false,true, "product");
+            myDataBase.insertData("Fabrics", "Test fabrics", false,true,false,"fabrics");
         }
     }
 
