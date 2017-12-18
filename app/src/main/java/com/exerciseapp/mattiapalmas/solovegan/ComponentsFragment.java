@@ -63,6 +63,8 @@ public class ComponentsFragment extends Fragment {
     private LinearLayout mainLayout, componentSelectLayout;
     private ImageButton backImageButton;
 
+    private int menuItemSelected;
+
     public ComponentsFragment() {
         // Required empty public constructor
     }
@@ -222,6 +224,9 @@ public class ComponentsFragment extends Fragment {
             public void onClick(View view) {
                 componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
                 setAdapterListView(componentsData);
+                menuItemSelected = 0;
+                addDifferentColorToItemSelected();
+                searchView.clearFocus();
             }
         });
 
@@ -230,6 +235,9 @@ public class ComponentsFragment extends Fragment {
             public void onClick(View view) {
                 componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food'");
                 setAdapterListView(componentsData);
+                menuItemSelected = 1;
+                addDifferentColorToItemSelected();
+                searchView.clearFocus();
             }
         });
 
@@ -238,6 +246,9 @@ public class ComponentsFragment extends Fragment {
             public void onClick(View view) {
                 componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'fabrics'");
                 setAdapterListView(componentsData);
+                menuItemSelected = 2;
+                addDifferentColorToItemSelected();
+                searchView.clearFocus();
             }
         });
 
@@ -246,15 +257,51 @@ public class ComponentsFragment extends Fragment {
             public void onClick(View view) {
                 componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'product'");
                 setAdapterListView(componentsData);
+                menuItemSelected = 3;
+                addDifferentColorToItemSelected();
+                searchView.clearFocus();
             }
         });
+    }
+
+    private void addDifferentColorToItemSelected() {
+        switch (menuItemSelected){
+            case 0 :
+                allSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                foodSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                productsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                break;
+            case 1 :
+                allSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                foodSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                productsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                break;
+            case 2 :
+                allSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                foodSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                productsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                break;
+            case 3 :
+                allSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                foodSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
+                productsSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                break;
+        }
     }
 
     private void onSearchViewClicked() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String searchText) {
-                componentsData = myDataBase.onSearchApply(searchText);
+                setComponentsDataCheckForType(searchText);
+                if (componentsData.size() == 0) {
+                    componentsData.add("No components found");
+                }
+
                 setAdapterListView(componentsData);
 
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(INPUT_METHOD_SERVICE);
@@ -263,12 +310,13 @@ public class ComponentsFragment extends Fragment {
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                if (s.length() == 0) {
-                    componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
+            public boolean onQueryTextChange(String searchText) {
+                if (searchText.length() == 0) {
+                    setComponentsDataCheckForType(searchText);
                     setAdapterListView(componentsData);
                 } else {
-                    componentsData = myDataBase.onSearchApply(s);
+                    setComponentsDataCheckForType(searchText);
+
                     if (componentsData.size() == 0) {
                         componentsData.add("No components found");
                     }
@@ -277,6 +325,23 @@ public class ComponentsFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    private void setComponentsDataCheckForType(String searchText) {
+        switch (menuItemSelected){
+            case 0 :
+                componentsData = myDataBase.onSearchApply(searchText, "");
+                break;
+            case 1 :
+                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'food'");
+                break;
+            case 2 :
+                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'fabrics'");
+                break;
+            case 3 :
+                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'product'");
+                break;
+        }
     }
 
     private void setAdapterListView(ArrayList<String> arrayStrings) {

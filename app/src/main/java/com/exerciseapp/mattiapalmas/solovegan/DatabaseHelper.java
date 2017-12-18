@@ -82,9 +82,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return componentNames;
     }
 
-    public ArrayList<String> onSearchApply(String searchText) {
+    public ArrayList<String> onSearchApply(String searchText, String category) {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " LIKE '" + searchText + "%'", null);
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " LIKE '" + searchText + "%'" + category , null);
         ArrayList<String> componentNames = new ArrayList<>();
         if (cursor.getCount() > 0) {
             for (int i = 0; i < cursor.getCount(); i++) {

@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/scan_clickable_layout"
+            android:id="@+id/scan_menu_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -44,7 +44,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/travel_clickable_layout"
+            android:id="@+id/travel_menu_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
@@ -71,7 +71,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/components_clickable_layout"
+            android:id="@+id/components_menu_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"

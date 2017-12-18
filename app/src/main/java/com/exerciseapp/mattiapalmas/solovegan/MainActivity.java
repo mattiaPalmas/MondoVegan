@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
     }
 
     private void initVariables() {
-        scanLayout = findViewById(R.id.scan_clickable_layout);
-        travelLayout = findViewById(R.id.travel_clickable_layout);
-        componentsLayout = findViewById(R.id.components_clickable_layout);
+        scanLayout = findViewById(R.id.scan_menu_layout);
+        travelLayout = findViewById(R.id.travel_menu_layout);
+        componentsLayout = findViewById(R.id.components_menu_layout);
 
         componentSelectLayout = findViewById(R.id.component_select_layout);
         mainLayout = findViewById(R.id.main_layout);

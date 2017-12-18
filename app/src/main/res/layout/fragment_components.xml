@@ -18,21 +18,22 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="All"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@color/kakichiaro"/>
 
         <TextView
             android:id="@+id/food_submenu"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Food"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/fabrics_submenu"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Fabrics"
@@ -41,7 +42,7 @@
         <TextView
             android:id="@+id/products_submenu"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Products"
