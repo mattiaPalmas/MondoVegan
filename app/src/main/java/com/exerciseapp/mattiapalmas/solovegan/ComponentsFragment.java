@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -169,6 +170,7 @@ public class ComponentsFragment extends Fragment {
         imageViewComp = getActivity().findViewById(R.id.image_view_comp);
         nameComponentTextView = getActivity().findViewById(R.id.name_component_text_view);
         descriptionTextView = getActivity().findViewById(R.id.description_text_view);
+        descriptionTextView.setMovementMethod(new ScrollingMovementMethod());
         isVeganTextView = getActivity().findViewById(R.id.is_vegan_text_view);
         backImageButton = getActivity().findViewById(R.id.back_image_button);
 
@@ -377,7 +379,7 @@ public class ComponentsFragment extends Fragment {
                 } else {
                     isVeganTextView.setTextColor(getResources().getColor(R.color.zafferanoProfondo));
                     isVeganTextView.setText("This component CAN BE BOTH Vegan or Not");
-                    imageViewComp.setImageResource(map.get("not_vegan"));
+                    imageViewComp.setImageResource(map.get("can_be_both"));
                 }
 
                 backImageButton.setOnClickListener(new View.OnClickListener() {
@@ -385,6 +387,8 @@ public class ComponentsFragment extends Fragment {
                     public void onClick(View view) {
                         mainLayout.setVisibility(View.VISIBLE);
                         componentSelectLayout.setVisibility(View.GONE);
+                        descriptionTextView.setText("");
+                        descriptionTextView.scrollTo(1,1);
                     }
                 });
 
