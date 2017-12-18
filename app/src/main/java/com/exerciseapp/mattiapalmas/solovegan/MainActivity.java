@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
     public void onBackPressed() {
         if (componentSelectLayout.getVisibility() == View.VISIBLE) {
             mainLayout.setVisibility(View.VISIBLE);
-            componentsLayout.setVisibility(View.GONE);
+            componentSelectLayout.setVisibility(View.GONE);
             descriptionTextView.setText("");
             descriptionTextView.scrollTo(1,1);
             return;

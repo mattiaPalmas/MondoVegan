@@ -382,6 +382,10 @@ public class ComponentsFragment extends Fragment {
                     imageViewComp.setImageResource(map.get("can_be_both"));
                 }
 
+
+                mainLayout.setVisibility(View.GONE);
+                componentSelectLayout.setVisibility(View.VISIBLE);
+
                 backImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -391,9 +395,6 @@ public class ComponentsFragment extends Fragment {
                         descriptionTextView.scrollTo(1,1);
                     }
                 });
-
-                mainLayout.setVisibility(View.GONE);
-                componentSelectLayout.setVisibility(View.VISIBLE);
             }
         });
     }
