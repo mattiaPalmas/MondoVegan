@@ -5,15 +5,16 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements ScanFragment.OnFragmentInteractionListener, TravelFragment.OnFragmentInteractionListener, ComponentsFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ScanFragment.OnFragmentInteractionListener, TravelFragment.OnFragmentInteractionListener, ComponentsFragment.OnFragmentInteractionListener, ENumberFragment.OnFragmentInteractionListener, BrandsFragment.OnFragmentInteractionListener {
 
-    LinearLayout scanLayout, travelLayout, componentsLayout, mainLayout, componentSelectLayout;
+    LinearLayout scanLayout, travelLayout, componentsLayout, mainLayout, componentSelectLayout, eNumberLayout, brandsLayout;
     TextView descriptionTextView;
     final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
     DatabaseHelper myDataBase;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         final android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
         scanLayout = findViewById(R.id.scan_menu_layout);
         travelLayout = findViewById(R.id.travel_menu_layout);
         componentsLayout = findViewById(R.id.components_menu_layout);
+        eNumberLayout = findViewById(R.id.e_numbers_menu_layout);
+        brandsLayout = findViewById(R.id.brands_menu_layout);
 
         componentSelectLayout = findViewById(R.id.component_select_layout);
         mainLayout = findViewById(R.id.main_layout);
@@ -57,6 +61,20 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
                 fragmentTransaction.replace(R.id.fragment_container, scanFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+                setColorForSelectedMenu(0);
+            }
+        });
+
+
+        componentsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ComponentsFragment componentsFragment = new ComponentsFragment();
+                fragmentTransaction.replace(R.id.fragment_container, componentsFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                setColorForSelectedMenu(1);
             }
         });
 
@@ -68,19 +86,73 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
                 fragmentTransaction.replace(R.id.fragment_container, travelFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+                setColorForSelectedMenu(2);
             }
         });
 
-        componentsLayout.setOnClickListener(new View.OnClickListener() {
+        eNumberLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                ComponentsFragment componentsFragment = new ComponentsFragment();
-                fragmentTransaction.replace(R.id.fragment_container, componentsFragment);
+                ENumberFragment eNumberFragment = new ENumberFragment();
+                fragmentTransaction.replace(R.id.fragment_container, eNumberFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+                setColorForSelectedMenu(3);
             }
         });
+
+        brandsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                BrandsFragment brandsFragment = new BrandsFragment();
+                fragmentTransaction.replace(R.id.fragment_container, brandsFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                setColorForSelectedMenu(4);
+            }
+        });
+    }
+
+    private void setColorForSelectedMenu(int layout) {
+        switch (layout){
+            case 0 :
+                scanLayout.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                componentsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                travelLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                eNumberLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                brandsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                break;
+            case 1 :
+                scanLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                componentsLayout.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                travelLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                eNumberLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                brandsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                break;
+            case 2 :
+                scanLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                componentsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                travelLayout.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                eNumberLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                brandsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                break;
+            case 3 :
+                scanLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                componentsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                travelLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                eNumberLayout.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                brandsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                break;
+            case 4 :
+                scanLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                componentsLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                travelLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                eNumberLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                brandsLayout.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
+                break;
+        }
     }
 
     @Override

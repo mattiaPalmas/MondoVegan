@@ -18,18 +18,20 @@
 
         <LinearLayout
             android:id="@+id/scan_menu_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:paddingBottom="5dp"
-            android:paddingTop="5dp">
+            android:paddingTop="5dp"
+            android:background="@color/kakichiaro">
 
             <ImageView
                 android:id="@+id/scan_button"
                 android:layout_width="40dp"
                 android:layout_height="0dp"
                 android:layout_weight="2"
+                android:layout_gravity="center"
                 android:background="@drawable/barcode" />
 
             <TextView
@@ -44,23 +46,52 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/travel_menu_layout"
-            android:layout_width="wrap_content"
+            android:id="@+id/components_menu_layout"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:background="@drawable/science" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="Components"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/travel_menu_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
             <ImageView
                 android:id="@+id/travel_button"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="0dp"
                 android:layout_weight="2"
+                android:layout_gravity="center"
                 android:background="@drawable/world" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="cursive"
@@ -70,11 +101,13 @@
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:id="@+id/components_menu_layout"
-            android:layout_width="wrap_content"
+            android:id="@+id/e_numbers_menu_layout"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:orientation="vertical"
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
@@ -82,17 +115,45 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
                 android:layout_weight="2"
-                android:background="@drawable/science" />
+                android:layout_gravity="center"
+                android:background="@drawable/enumber" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="Components"
+                android:text="E Numbers"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/brands_menu_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:background="@drawable/brands" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="Brands"
                 android:textStyle="bold" />
 
         </LinearLayout>
