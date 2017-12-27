@@ -2,18 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.exerciseapp.mattiapalmas.solovegan.ScanFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/grigioTèVerde"
-        android:gravity="center"
-        android:text="Scan working in progress"
-        android:textSize="20dp"
-        android:textColor="@color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Scan Working progress"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:background="#006400"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></View>
+
+
 
 </LinearLayout>
