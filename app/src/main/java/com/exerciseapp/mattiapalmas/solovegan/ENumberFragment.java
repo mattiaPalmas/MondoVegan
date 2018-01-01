@@ -106,9 +106,7 @@ public class ENumberFragment extends Fragment {
 
         initVariables();
         setListComponents();
-        //getAllData();
         onSearchViewClicked();
-        onSubMenuClicked();
         setOnListItemClicked();
         return view;
     }
@@ -177,94 +175,11 @@ public class ENumberFragment extends Fragment {
     }
 
     private void setListComponents() {
-        componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
+        componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'eNumber'");
         setAdapterListView(componentsData);
     }
 
-    public void getAllData() {
-        Cursor res = myDataBase.getAllData();
 
-        if (res.getCount() == 0) {
-            Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        StringBuffer buffer = new StringBuffer();
-        while (res.moveToNext()) {
-            buffer.append("name: " + res.getString(1) + "\n");
-            buffer.append("details: " + res.getString(2) + "\n");
-            if (res.getString(3).equals("1")) {
-                buffer.append("is vegan?: YES \n");
-            } else {
-                buffer.append("is vegan?: NO \n");
-            }
-
-            if (res.getString(4).equals("1")) {
-                buffer.append("is not vegan?: YES \n");
-            } else {
-                buffer.append("is not vegan?: NO \n");
-            }
-
-            if (res.getString(5).equals("1")) {
-                buffer.append("can be both? YES \n");
-            } else {
-                buffer.append("can be both?: NO \n");
-            }
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable(true);
-        builder.setTitle("Database");
-        builder.setMessage(buffer);
-        builder.show();
-    }
-
-
-    private void onSubMenuClicked() {
-        allSubMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME);
-                setAdapterListView(componentsData);
-                menuItemSelected = 0;
-                addDifferentColorToItemSelected();
-                searchView.clearFocus();
-            }
-        });
-
-        foodSubMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food'");
-                setAdapterListView(componentsData);
-                menuItemSelected = 1;
-                addDifferentColorToItemSelected();
-                searchView.clearFocus();
-            }
-        });
-
-        fabricsSubMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'fabrics'");
-                setAdapterListView(componentsData);
-                menuItemSelected = 2;
-                addDifferentColorToItemSelected();
-                searchView.clearFocus();
-            }
-        });
-
-        productsSubMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'product'");
-                setAdapterListView(componentsData);
-                menuItemSelected = 3;
-                addDifferentColorToItemSelected();
-                searchView.clearFocus();
-            }
-        });
-    }
 
     private void addDifferentColorToItemSelected() {
         switch (menuItemSelected){
@@ -299,7 +214,7 @@ public class ENumberFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String searchText) {
-                setComponentsDataCheckForType(searchText);
+                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'eNumber'");
                 if (componentsData.size() == 0) {
                     componentsData.add("No components found");
                 }
@@ -314,10 +229,10 @@ public class ENumberFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String searchText) {
                 if (searchText.length() == 0) {
-                    setComponentsDataCheckForType(searchText);
+                    componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'eNumber'");
                     setAdapterListView(componentsData);
                 } else {
-                    setComponentsDataCheckForType(searchText);
+                    componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'eNumber'");
 
                     if (componentsData.size() == 0) {
                         componentsData.add("No components found");
@@ -329,22 +244,6 @@ public class ENumberFragment extends Fragment {
         });
     }
 
-    private void setComponentsDataCheckForType(String searchText) {
-        switch (menuItemSelected){
-            case 0 :
-                componentsData = myDataBase.onSearchApply(searchText, "");
-                break;
-            case 1 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'food'");
-                break;
-            case 2 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'fabrics'");
-                break;
-            case 3 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'product'");
-                break;
-        }
-    }
 
     private void setAdapterListView(ArrayList<String> arrayStrings) {
         adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, R.id.itemTextView, arrayStrings);
