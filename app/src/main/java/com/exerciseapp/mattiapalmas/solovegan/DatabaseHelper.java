@@ -97,7 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return componentNames;
     }
 
-    
+
 
     public ArrayList<String> getDetailsComponent(String query){
         SQLiteDatabase database = this.getReadableDatabase();

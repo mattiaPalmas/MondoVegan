@@ -293,7 +293,7 @@ public class ComponentsFragment extends Fragment {
     private void setComponentsDataCheckForType(String searchText) {
         switch (menuItemSelected){
             case 0 :
-                componentsData = myDataBase.test( searchText, " WHERE " + COL_7 + " = 'food' OR " + COL_7 + " = 'fabrics' OR " + COL_7 + " = 'products'");
+                componentsData = myDataBase.onSearchApply(searchText, " AND (" + COL_7 + " = 'food' OR " + COL_7 + " = 'fabrics' OR " + COL_7 + " = 'products')");
                 break;
             case 1 :
                 componentsData = myDataBase.onSearchApply(searchText, " AND " + COL_7 + " = 'food'");
