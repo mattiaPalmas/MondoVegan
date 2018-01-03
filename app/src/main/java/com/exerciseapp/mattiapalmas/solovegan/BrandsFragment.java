@@ -173,16 +173,39 @@ public class BrandsFragment extends Fragment {
                 expandedMenuLayout.setVisibility(View.VISIBLE);
                 categoriesScrollView.setVisibility(View.GONE);
 
-                listTitleHeader.add("Bleaching cream");
-                listTitleHeader.add("Body Oils");
-                listTitleHeader.add("Body scrubs");
-                listTitleHeader.add("Deodorant");
+                if (listHash.isEmpty()){
+                    listTitleHeader.add("Bleaching cream");
+                    listTitleHeader.add("Body Oils");
+                    listTitleHeader.add("Body scrubs");
+                    listTitleHeader.add("Deodorant");
+                    String str1 = "";
 
-                List<Spanned> bodyCare = new ArrayList<>();
-                String str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
-                bodyCare.add(fromHtml(str1));
+                    List<Spanned> bodyCare = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    bodyCare.add(fromHtml(str1));
 
-                listHash.put(listTitleHeader.get(0),bodyCare);
+                    listHash.put(listTitleHeader.get(0),bodyCare);
+
+                    List<Spanned> bodyOils = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    bodyOils.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(1),bodyOils);
+
+                    List<Spanned> bodyScrub = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    bodyScrub.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(2),bodyScrub);
+
+                    List<Spanned> deodorant = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    deodorant.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(3),deodorant);
+                }
+
+
             }
         });
     }
