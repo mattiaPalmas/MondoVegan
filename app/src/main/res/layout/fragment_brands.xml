@@ -5,66 +5,131 @@
     android:orientation="vertical"
     tools:context="com.exerciseapp.mattiapalmas.solovegan.ComponentsFragment">
 
+    <ScrollView
+        android:id="@+id/categories_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/body_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Body Care"/>
+                <Button
+                    android:id="@+id/nail_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Nail Care"/>
+                <Button
+                    android:id="@+id/personal_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Personal Care"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/shaving_supply_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Shaving Supply"/>
+                <Button
+                    android:id="@+id/skin_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Skin Care"/>
+                <Button
+                    android:id="@+id/sun_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Sun Care"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/bathroom_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Bathroom Care"/>
+                <Button
+                    android:id="@+id/kitchen_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Kitchen care"/>
+                <Button
+                    android:id="@+id/general_household_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="General household"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/laundry_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Laundry Care"/>
+                <Button
+                    android:id="@+id/office_supplies_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Office supplies"/>
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/expanded_menu_layout"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:background="@color/zafferanoProfondo"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/all_submenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="All"
-            android:textStyle="bold"
-            android:background="@color/kakichiaro"/>
-
-        <TextView
-            android:id="@+id/food_submenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Food"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/fabrics_submenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Cosmetics"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/products_submenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="House"
-            android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_margin="40dp">
+        <ExpandableListView
+            android:id="@+id/expanded_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ExpandableListView>
     </LinearLayout>
-
-    <SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/grigioTèVerde"></SearchView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/grey" />
-
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
-
 
 </LinearLayout>
 
