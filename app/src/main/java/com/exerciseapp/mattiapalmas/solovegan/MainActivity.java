@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
     TextView descriptionTextView;
     final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
     DatabaseHelper myDataBase;
-    LinearLayout expandedMenuLayout;
+    LinearLayout expandedMenuLayout, mainFragmentBrands;
     ScrollView categoriesScrollView;
     String flagMenu;
 
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
         brandsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 BrandsFragment brandsFragment = new BrandsFragment();
                 fragmentTransaction.replace(R.id.fragment_container, brandsFragment);
@@ -180,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
             return;
         }
         else if (flagMenu.equals("brands")){
+            mainFragmentBrands = findViewById(R.id.main_fragment_brands_layout);
             expandedMenuLayout = findViewById(R.id.expanded_menu_layout);
             categoriesScrollView = findViewById(R.id.categories_scroll_view);
 
@@ -187,6 +189,11 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
                 categoriesScrollView.setVisibility(View.VISIBLE);
                 expandedMenuLayout.setVisibility(View.GONE);
                 return;
+            }
+
+            if (categoriesScrollView.getVisibility() == View.VISIBLE){
+                categoriesScrollView.setVisibility(View.GONE);
+                mainFragmentBrands.setVisibility(View.VISIBLE);
             }
         }
         else {return;}

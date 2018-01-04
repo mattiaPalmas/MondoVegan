@@ -59,9 +59,9 @@ public class BrandsFragment extends Fragment {
     private View mView;
     private OnFragmentInteractionListener mListener;
 
-    LinearLayout expandedMenuLayout;
-    ScrollView categoriesScrollView;
-    Button bodyCareBtn;
+    private LinearLayout expandedMenuLayout, mainFragmentBrands;
+    private ScrollView categoriesScrollView;
+    private Button bodyCareBtn, searchBtn, categoriesBtn;
     private ExpandableListView listView;
     private  ExpandableMenuAdapter menuAdapter;
     private List<String> listTitleHeader;
@@ -106,9 +106,11 @@ public class BrandsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initVariables();
+        onSearchOrCategoriesCLicked();
         onCategoryClicked();
         return view;
     }
+
 
 
 
@@ -159,9 +161,12 @@ public class BrandsFragment extends Fragment {
         menuAdapter = new ExpandableMenuAdapter(getActivity(),listTitleHeader,listHash);
         listView.setAdapter(menuAdapter);
 
+        mainFragmentBrands = mView.findViewById(R.id.main_fragment_brands_layout);
         expandedMenuLayout = mView.findViewById(R.id.expanded_menu_layout);
         categoriesScrollView = mView.findViewById(R.id.categories_scroll_view);
 
+        searchBtn = mView.findViewById(R.id.search_btn);
+        categoriesBtn = mView.findViewById(R.id.categories_btn);
         bodyCareBtn = mView.findViewById(R.id.body_care_btn);
 
     }
@@ -206,6 +211,24 @@ public class BrandsFragment extends Fragment {
                 }
 
 
+            }
+        });
+    }
+
+    private void onSearchOrCategoriesCLicked() {
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        categoriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainFragmentBrands.setVisibility(View.GONE);
+                categoriesScrollView.setVisibility(View.VISIBLE);
             }
         });
     }
