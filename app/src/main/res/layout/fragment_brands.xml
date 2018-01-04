@@ -27,6 +27,29 @@
             android:layout_gravity="center"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/search_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <SearchView
+            android:id="@+id/search_view_brands"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grigioTèVerde"></SearchView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/grey" />
+
+        <ListView
+            android:id="@+id/list_view_brands"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/categories_scroll_view"
         android:layout_width="match_parent"

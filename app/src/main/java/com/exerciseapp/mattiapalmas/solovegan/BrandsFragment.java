@@ -1,41 +1,28 @@
 package com.exerciseapp.mattiapalmas.solovegan;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Spanned;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.text.Html.fromHtml;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_2;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_7;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_NAME;
 
 
 /**
@@ -59,13 +46,17 @@ public class BrandsFragment extends Fragment {
     private View mView;
     private OnFragmentInteractionListener mListener;
 
-    private LinearLayout expandedMenuLayout, mainFragmentBrands;
+    private LinearLayout expandedMenuLayout, mainFragmentBrands, searchFragmentLayout;
     private ScrollView categoriesScrollView;
     private Button bodyCareBtn, searchBtn, categoriesBtn;
-    private ExpandableListView listView;
-    private  ExpandableMenuAdapter menuAdapter;
+    private ExpandableListView expandableListView;
+    private ExpandableMenuAdapter menuAdapter;
     private List<String> listTitleHeader;
     private HashMap<String,List<Spanned>> listHash;
+    private ArrayList<String> brandsList;
+    private ArrayAdapter<String> adapter;
+    private ListView listViewBrands;
+    private SearchView searchViewBrands;
 
     public BrandsFragment() {
         // Required empty public constructor
@@ -107,11 +98,8 @@ public class BrandsFragment extends Fragment {
 
         initVariables();
         onSearchOrCategoriesCLicked();
-        onCategoryClicked();
         return view;
     }
-
-
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -153,26 +141,29 @@ public class BrandsFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
     private void initVariables() {
         listTitleHeader = new ArrayList<>();
         listHash = new HashMap<>();
-        listView = (ExpandableListView) mView.findViewById(R.id.expanded_menu);
+        expandableListView = (ExpandableListView) mView.findViewById(R.id.expanded_menu);
         menuAdapter = new ExpandableMenuAdapter(getActivity(),listTitleHeader,listHash);
-        listView.setAdapter(menuAdapter);
+        expandableListView.setAdapter(menuAdapter);
 
+        searchFragmentLayout = mView.findViewById(R.id.search_fragment_layout);
         mainFragmentBrands = mView.findViewById(R.id.main_fragment_brands_layout);
         expandedMenuLayout = mView.findViewById(R.id.expanded_menu_layout);
         categoriesScrollView = mView.findViewById(R.id.categories_scroll_view);
 
         searchBtn = mView.findViewById(R.id.search_btn);
         categoriesBtn = mView.findViewById(R.id.categories_btn);
-        bodyCareBtn = mView.findViewById(R.id.body_care_btn);
 
+        brandsList = new ArrayList<>();
+        listViewBrands = mView.findViewById(R.id.list_view_brands);
     }
 
     private void onCategoryClicked() {
-        bodyCareBtn.setOnClickListener(new View.OnClickListener() {
+        if (categoriesScrollView.getVisibility() == View.VISIBLE){
+            bodyCareBtn = mView.findViewById(R.id.body_care_btn);
+            bodyCareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 expandedMenuLayout.setVisibility(View.VISIBLE);
@@ -209,10 +200,9 @@ public class BrandsFragment extends Fragment {
 
                     listHash.put(listTitleHeader.get(3),deodorant);
                 }
-
-
             }
         });
+        }
     }
 
     private void onSearchOrCategoriesCLicked() {
@@ -220,7 +210,11 @@ public class BrandsFragment extends Fragment {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mainFragmentBrands.setVisibility(View.GONE);
+               searchFragmentLayout.setVisibility(View.VISIBLE);
+                addAllBrands();
+                addBrandsIntoList(brandsList);
+                setOnSearchApply();
             }
         });
 
@@ -229,7 +223,67 @@ public class BrandsFragment extends Fragment {
             public void onClick(View view) {
                 mainFragmentBrands.setVisibility(View.GONE);
                 categoriesScrollView.setVisibility(View.VISIBLE);
+                onCategoryClicked();
             }
         });
+    }
+
+    private void setOnSearchApply() {
+        final ArrayList<String> filterBrandsList = new ArrayList<>();
+        searchViewBrands = mView.findViewById(R.id.search_view_brands);
+        searchViewBrands.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                filterBrandsList.clear();
+                for (String string : brandsList){
+                    if (string.toLowerCase().startsWith(s.toLowerCase())){
+                        filterBrandsList.add(string);
+                    }
+                }
+
+                if (filterBrandsList.size() == 0){
+                    filterBrandsList.add("No components found");
+                }
+                addBrandsIntoList(filterBrandsList);
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchViewBrands.getWindowToken(), 0);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterBrandsList.clear();
+
+                for (String string : brandsList){
+                    if (string.toLowerCase().startsWith(s.toLowerCase())){
+                        filterBrandsList.add(string);
+                    }
+                }
+
+                if (filterBrandsList.size() == 0){
+                    filterBrandsList.add("No components found");
+                }
+
+                addBrandsIntoList(filterBrandsList);
+
+                if (s.length() == 0){
+                    addBrandsIntoList(brandsList);
+                    return false;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void addBrandsIntoList(ArrayList<String> brandsList) {
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, R.id.itemTextView, brandsList);
+        listViewBrands.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void addAllBrands() {
+        brandsList.add("Fair and Flawless");
+        brandsList.add("Jolen Creme Bleach");
+        brandsList.add("Reviva Laboratories");
     }
 }

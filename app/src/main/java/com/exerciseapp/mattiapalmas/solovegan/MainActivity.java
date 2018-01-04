@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements ScanFragment.OnFragmentInteractionListener, TravelFragment.OnFragmentInteractionListener, ComponentsFragment.OnFragmentInteractionListener, ENumberFragment.OnFragmentInteractionListener, BrandsFragment.OnFragmentInteractionListener {
 
-    LinearLayout scanLayout, travelLayout, componentsLayout, mainLayout, componentSelectLayout, eNumberLayout, brandsLayout;
+    LinearLayout scanLayout, travelLayout, componentsLayout, mainLayout, componentSelectLayout, eNumberLayout, brandsLayout, searchBrandsLayout;
     TextView descriptionTextView;
     final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
     DatabaseHelper myDataBase;
@@ -184,15 +184,18 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
             mainFragmentBrands = findViewById(R.id.main_fragment_brands_layout);
             expandedMenuLayout = findViewById(R.id.expanded_menu_layout);
             categoriesScrollView = findViewById(R.id.categories_scroll_view);
+            searchBrandsLayout = findViewById(R.id.search_fragment_layout);
 
             if (expandedMenuLayout.getVisibility() == View.VISIBLE) {
                 categoriesScrollView.setVisibility(View.VISIBLE);
                 expandedMenuLayout.setVisibility(View.GONE);
                 return;
-            }
-
-            if (categoriesScrollView.getVisibility() == View.VISIBLE){
+            } else if (categoriesScrollView.getVisibility() == View.VISIBLE){
                 categoriesScrollView.setVisibility(View.GONE);
+                mainFragmentBrands.setVisibility(View.VISIBLE);
+            }
+            else if(searchBrandsLayout.getVisibility() == View.VISIBLE){
+                searchBrandsLayout.setVisibility(View.GONE);
                 mainFragmentBrands.setVisibility(View.VISIBLE);
             }
         }
