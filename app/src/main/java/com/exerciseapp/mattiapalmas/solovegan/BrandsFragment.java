@@ -18,6 +18,8 @@ import android.widget.ScrollView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -317,10 +319,7 @@ public class BrandsFragment extends Fragment {
                     }
                 }
                 setAdapterListView(brandsData);
-                Set<String> hs = new HashSet<>();
-                hs.addAll(brandsData);
-                brandsData.clear();
-                brandsData.addAll(hs);
+                deleteDuplicateAndOrderBrands();
 
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(searchBtn.getWindowToken(), 0);
@@ -333,10 +332,7 @@ public class BrandsFragment extends Fragment {
                     addAllBrands();
                 } else {
                     brandsData = myDataBase.onSearchBrandsApply(s);
-                    Set<String> hs = new HashSet<>();
-                    hs.addAll(brandsData);
-                    brandsData.clear();
-                    brandsData.addAll(hs);
+                    deleteDuplicateAndOrderBrands();
 
                     if (brandsData.size() == 0) {
                         brandsData.add("No components found");
@@ -350,10 +346,7 @@ public class BrandsFragment extends Fragment {
 
     private void addAllBrands() {
         brandsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_BRANDS);
-        Set<String> hs = new HashSet<>();
-        hs.addAll(brandsData);
-        brandsData.clear();
-        brandsData.addAll(hs);
+        deleteDuplicateAndOrderBrands();
         setAdapterListView(brandsData);
     }
 
@@ -361,5 +354,18 @@ public class BrandsFragment extends Fragment {
         adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, R.id.itemTextView, arrayStrings);
         listViewBrands.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void deleteDuplicateAndOrderBrands(){
+        Set<String> hs = new HashSet<>();
+        hs.addAll(brandsData);
+        brandsData.clear();
+        brandsData.addAll(hs);
+        Collections.sort(brandsData, new Comparator<String>() {
+            @Override
+            public int compare(String s, String t1) {
+                return s.compareToIgnoreCase(t1);
+            }
+        });
     }
 }
