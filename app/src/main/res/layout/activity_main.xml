@@ -8,6 +8,19 @@
     tools:context="com.exerciseapp.mattiapalmas.solovegan.MainActivity">
 
     <LinearLayout
+        android:id="@+id/progress_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/kakichiaro">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="300px" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,9 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
         android:paddingLeft="3dp"
-        android:paddingRight="3dp">
+        android:paddingRight="3dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/name_component_text_view"
@@ -70,11 +83,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="a synthetic fabric."
-            android:textColor="@color/black"
-            android:maxLines = "8"
+            android:maxLines="8"
             android:minLines="8"
-            android:scrollbars = "vertical"/>
+            android:scrollbars="vertical"
+            android:text="a synthetic fabric."
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/is_vegan_text_view"

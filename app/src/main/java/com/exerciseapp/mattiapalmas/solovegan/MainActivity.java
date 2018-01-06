@@ -1,12 +1,15 @@
 package com.exerciseapp.mattiapalmas.solovegan;
 
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -17,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
     TextView descriptionTextView;
     final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
     DatabaseHelper myDataBase;
-    LinearLayout expandedMenuLayout, mainFragmentBrands;
+    LinearLayout expandedMenuLayout, mainFragmentBrands, progressBarLayout;
     ScrollView categoriesScrollView;
     String flagMenu;
 
@@ -36,8 +39,11 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
 
         initVariables();
         prepareMenuClickable();
+        ProgressBar progBar = (ProgressBar) findViewById(R.id.progressBar);
+        progBar.getIndeterminateDrawable().setColorFilter(Color.argb(255,15,164,0), PorterDuff.Mode.MULTIPLY);
         insertComponentsData();
         insertBrandsData();
+        progressBarLayout.setVisibility(View.GONE);
     }
 
     private void initVariables() {
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
         eNumberLayout = findViewById(R.id.e_numbers_menu_layout);
         brandsLayout = findViewById(R.id.brands_menu_layout);
 
+        progressBarLayout = findViewById(R.id.progress_bar_layout);
         componentSelectLayout = findViewById(R.id.component_select_layout);
         mainLayout = findViewById(R.id.main_layout);
         myDataBase = new DatabaseHelper(this);
@@ -1091,6 +1098,31 @@ public class MainActivity extends AppCompatActivity implements ScanFragment.OnFr
             myDataBase.insertBrandsData("Terra Dolce", "Body Care", "Body Oils");
             myDataBase.insertBrandsData("Welstar Organics", "Body Care", "Body Oils");
             myDataBase.insertBrandsData("Yumè Blush", "Body Care", "Body Oils");
+
+            myDataBase.insertBrandsData("Alvin Connor","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Aromacare Victoria","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Bath Bomb Babes","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Black Tai Salt Company","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Bodyenrich","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Brittanie's Thyme","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Clay Lotus","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Evolve Skin","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Exuberance International Inc.","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Fanciful Fox, The","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Frank T. Ross (Nature Clean)","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Golden Path Alchemy","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Hugo Natural Products","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Lillian Organics","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Love JJ","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Maison Meunier","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Natural Salt Lamps","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Oribel Organics","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("POSH Beauty Essentials","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Rhone Botanicals","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Scrub Love","Body Care","Body scrubs");
+            myDataBase.insertBrandsData("Terra Dolce","Body Care","Body scrubs");
+
+            myDataBase.insertBrandsData("Mia Rose Products, Inc.","Body Care","Body Wraps");
         }
     }
 

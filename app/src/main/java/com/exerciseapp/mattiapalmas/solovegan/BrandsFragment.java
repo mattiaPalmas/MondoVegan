@@ -186,21 +186,19 @@ public class BrandsFragment extends Fragment {
 
                     List<Spanned> bodyOils = new ArrayList<>();
                     brands = myDataBase.getBrandsByCategoryType("Body Oils");
-                    for (String brand : brands) {
-                      str1 = str1 + "<br>- " + brand;
-                    }
+                    str1 = buildBrandsString(brands);
                     bodyOils.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(0), bodyOils);
 
                     List<Spanned> bodyScrub = new ArrayList<>();
                     brands = myDataBase.getBrandsByCategoryType("Body scrubs");
-                    for (String brand : brands) {
-                        str1 = str1 + "<br>- " + brand;
-                    }                    bodyScrub.add(fromHtml(str1));
+                    str1 = buildBrandsString(brands);
+                    bodyScrub.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(1), bodyScrub);
 
                     List<Spanned> bodyWraps = new ArrayList<>();
-                    str1 = "- Mia Rose Products, Inc.<br>";
+                    brands = myDataBase.getBrandsByCategoryType("Body Wraps");
+                    str1 = buildBrandsString(brands);
                     bodyWraps.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(2), bodyWraps);
 
@@ -223,6 +221,14 @@ public class BrandsFragment extends Fragment {
                     menuAdapter.notifyDataSetChanged();
                     expandedMenuLayout.setVisibility(View.VISIBLE);
                     categoriesScrollView.setVisibility(View.GONE);
+                }
+
+                private String buildBrandsString(ArrayList<String> brands) {
+                   String brandsString = "";
+                    for (String brand : brands) {
+                        brandsString = brandsString + "<br>- " + brand;
+                    }
+                    return brandsString;
                 }
             });
 
