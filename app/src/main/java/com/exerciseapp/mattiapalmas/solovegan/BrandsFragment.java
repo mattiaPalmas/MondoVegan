@@ -19,7 +19,9 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.text.Html.fromHtml;
@@ -315,6 +317,10 @@ public class BrandsFragment extends Fragment {
                     }
                 }
                 setAdapterListView(brandsData);
+                Set<String> hs = new HashSet<>();
+                hs.addAll(brandsData);
+                brandsData.clear();
+                brandsData.addAll(hs);
 
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(searchBtn.getWindowToken(), 0);
@@ -327,6 +333,10 @@ public class BrandsFragment extends Fragment {
                     addAllBrands();
                 } else {
                     brandsData = myDataBase.onSearchBrandsApply(s);
+                    Set<String> hs = new HashSet<>();
+                    hs.addAll(brandsData);
+                    brandsData.clear();
+                    brandsData.addAll(hs);
 
                     if (brandsData.size() == 0) {
                         brandsData.add("No components found");
@@ -340,6 +350,10 @@ public class BrandsFragment extends Fragment {
 
     private void addAllBrands() {
         brandsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_BRANDS);
+        Set<String> hs = new HashSet<>();
+        hs.addAll(brandsData);
+        brandsData.clear();
+        brandsData.addAll(hs);
         setAdapterListView(brandsData);
     }
 
