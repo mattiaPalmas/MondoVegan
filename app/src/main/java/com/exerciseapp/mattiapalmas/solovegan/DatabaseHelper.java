@@ -110,7 +110,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> onSearchBrandsApply(String searchText) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_BRANDS + " WHERE " + BRANDS_NAME.toLowerCase() + " LIKE '" + searchText.toLowerCase() + "%'", null);
-        loopThroughDatas(cursor,database);
         return  loopThroughDatas(cursor,database);
     }
 

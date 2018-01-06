@@ -203,19 +203,22 @@ public class BrandsFragment extends Fragment {
                     listHash.put(listTitleHeader.get(2), bodyWraps);
 
                     List<Spanned> deodorant = new ArrayList<>();
-                    str1 = "- Alvin Connor<br>- Amor Luminis<br>- Arnasa Naturels<br>- ATTITUDE (Bio-Spectra)<br>- Baba's Bath and Body<br>- Bali Secrets<br>- Banjara's<br>- Bare Blossom<br>- BEAUT.E<br>- BEMYFLOWER<br>- BioBella<br>- Biofilia<br>- Blissoma<br>- Blue Beautifly<br>- Body Crystal, Inc.<br>- Bonbon<br>- Botanical Babe<br>- Bubbly Moon Naturals<br>- Buck Naked Soap Company<br>- Caitlin's Super Natural<br>- Clémence et Vivien<br>- Clay Lotus<br>- Crystal Body Deodorant<br>- DAYDRY<br>- Deodorant Stones of America<br>- Down to Earth Handmade Products<br>- Eco Chic Chick<br>- Edens Garden’s Essential Oils<br>- Ellingwood Soap Company<br>- Engelshaut Cosmetics<br>- European Perfume Works Co.<br>- Everdry<br>- Evolve Skin<br>- Flurifresh (Alphamed)<br>- Foster Naturals<br>- Giraluna Cosmética<br>- Glory by Nature<br>- Good & Clean Skincare<br>- GREENBODY LLC<br>- Handmade Heroes<br>- Herban Cowboy<br>- Hippy Pits Natural Deodorant<br>- Homemade Betty<br>- Homestead Body<br>- InstaCure<br>- Kaieteur Naturals<br>- KIND-LY<br>- Kingdom Plantae<br>- Kosmolife<br>- Lip-Ink International<br>- Live Native<br>- me & you. body<br>- Meow Meow Tweet<br>- Milcu<br>- Moist Towel Services<br>- Morning Blossom Studio<br>- ms. Artisan<br>- Naked Earth<br>- Natural Scentzations<br>- Naturally Fresh Crystal Deodorant<br>- Naturally Uncommon<br>- Nokomis Naturals<br>- North Coast Organics<br>- OM made<br>- OMNITURAL SAS<br>- Organic Rosehip Skincare<br>- Organic Skin by Myriam<br>- Paper Street Soap Co.<br>- PAZ ARTESANAL<br>- pHresh Deodorant (Sparklehearts)<br>- Phyte Club<br>- Pristine Beauty<br>- Probiotic Group<br>- QyC Mexico<br>- RabbitMama Cosmetics<br>- Raven's Creek Natural Company<br>- Really Good Skin Care<br>- Reficis<br>- Rose and Jeanne<br>- Roxz Cosmetix<br>- Ruchy Skincare<br>- rue Santé<br>- Rustic MAKA<br>- SatinNaturel<br>- Savons Zébulles<br>- Schmidt's Naturals<br>- Senz Cosmetics<br>- Sexy Healthy Earthy<br>- Shiva’s Delight<br>- Sister Suds<br>- SK Pure Essentials<br>- Soapwalla Kitchen<br>- SOLSEQUIA<br>- Star Remedies B.V.<br>- Sudsatorium<br>- Sur Australis<br>- Tales of Nature<br>- The Best Deodorant In The World<br>- The Divine Company<br>- The Good Oak Soap<br>- The Salve Shoppe<br>- Thesis<br>- Thirteen Organics<br>- Touch and Such<br>- Tropic Skin Care<br>- Twinkle Apothecary<br>- Vegane Pflege<br>- Vegenero<br>- Verdura NaturAlternatives<br>- Well-in-Hand<br>- Welstar Organics<br>- Woodstock Herbal Products<br>- Zabana Essentials<br>";
+                    brands = myDataBase.getBrandsByCategoryType("Deodorant");
+                    str1 = buildBrandsString(brands);
                     deodorant.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(3), deodorant);
 
                     List<Spanned> depilatory = new ArrayList<>();
-                    str1 = "- Aqua Natural<br>- AYA Cosmetics<br>- Evande Facial Care<br>- LUXURY COSMETICS<br>- Solaire Pty Ltd<br>- Sugar Phat<br>- Zue Beauty<br>";
+                    brands = myDataBase.getBrandsByCategoryType("Depilatory");
+                    str1 = buildBrandsString(brands);
                     depilatory.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(4), depilatory);
 
                     List<Spanned> footCare = new ArrayList<>();
-                    str1 = "- Aroma Bella<br>- Aromacare Victoria<br>- Bioethique Organic Cosmetics<br>- Cactus & Ivy<br>- Clavé Body Care International, Inc.<br>- Clay Lotus<br>- Deodorant Stones of America<br>- Exuberance International Inc.<br>- KSA Jojoba<br>- Lillian Organics<br>- Masada<br>- Milcu<br>";
+                    brands = myDataBase.getBrandsByCategoryType("Foot Care");
+                    str1 = buildBrandsString(brands);
                     footCare.add(fromHtml(str1));
-                    listHash.put(listTitleHeader.get(4), footCare);
+                    listHash.put(listTitleHeader.get(5), footCare);
 
 
                     menuAdapter.notifyDataSetChanged();
