@@ -182,15 +182,21 @@ public class BrandsFragment extends Fragment {
                     listTitleHeader.add("Depilatory");
                     listTitleHeader.add("Foot care");
                     String str1 = "";
+                    ArrayList<String> brands = new ArrayList<>();
 
                     List<Spanned> bodyOils = new ArrayList<>();
-                    str1 = "- <b>Ally's AromaRemedies</b><br>- <b>Aroma Bella</b><br>- <b>Ashi Therapy</b><br>- <b>Bubble Shack Hawaiian Soap Company</b><br>- <b>Clay Lotus</b><br>- <b>Edens Garden’s Essential Oils</b><br>- <b>Lillian Organics</b><br>- <b>Lotus Garden Botanicals</b><br>- <b>Maison de Chanvre</b><br>- <b>Moksa Organics</b><br>- <b>Tallulah Jane Natural Perfumes</b><br>- <b>Terra Dolce</b><br>- <b>Welstar Organics</b><br>- <b>Yumé Blush</b>";
+                    brands = myDataBase.getBrandsByCategoryType("Body Oils");
+                    for (String brand : brands) {
+                      str1 = str1 + "<br>- " + brand;
+                    }
                     bodyOils.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(0), bodyOils);
 
                     List<Spanned> bodyScrub = new ArrayList<>();
-                    str1 = "<b>- Alvin Connor<br>- Aromacare Victoria<br>- Bath Bomb Babes<br>- Black Tai Salt Company<br>- Bodyenrich<br>- Brittanie's Thyme<br>- Clay Lotus<br>- Evolve Skin<br>- Exuberance International Inc.<br>- Fanciful Fox, The<br>- Frank T. Ross (Nature Clean)<br>- Golden Path Alchemy<br>- Hugo Natural Products<br>- Lillian Organics<br>- Love JJ<br>- Maison Meunier<br>- Natural Salt Lamps<br>- Oribel Organics<br>- POSH Beauty Essentials<br>- Rhone Botanicals<br>- Scrub Love<br>- Terra Dolce<br> </b>";
-                    bodyScrub.add(fromHtml(str1));
+                    brands = myDataBase.getBrandsByCategoryType("Body scrubs");
+                    for (String brand : brands) {
+                        str1 = str1 + "<br>- " + brand;
+                    }                    bodyScrub.add(fromHtml(str1));
                     listHash.put(listTitleHeader.get(1), bodyScrub);
 
                     List<Spanned> bodyWraps = new ArrayList<>();
@@ -278,7 +284,9 @@ public class BrandsFragment extends Fragment {
         categoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mainFragmentBrands.setVisibility(View.GONE);
+                categoriesScrollView.setVisibility(View.VISIBLE);
+                onCategoryClicked();
             }
         });
     }
@@ -319,12 +327,6 @@ public class BrandsFragment extends Fragment {
                 return false;
             }
         });
-    }
-
-    private void addBrandsIntoList(ArrayList<String> brandsList) {
-        adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, R.id.itemTextView, brandsList);
-        listViewBrands.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 
     private void addAllBrands() {

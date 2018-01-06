@@ -98,48 +98,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getAllDataFromDataBase(String query) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery(query, null);
-        ArrayList<String> componentNames = new ArrayList<>();
-        if (cursor.getCount() > 0) {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                cursor.moveToNext();
-                componentNames.add(cursor.getString(1));
-            }
-        }
-        cursor.close();
-        database.close();
-        return componentNames;
+        return  loopThroughDatas(cursor,database);
     }
 
     public ArrayList<String> onSearchComponentsApply(String searchText, String category) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_NAME + " LIKE '%" + searchText + "%'" + category, null);
-        ArrayList<String> componentNames = new ArrayList<>();
-        if (cursor.getCount() > 0) {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                cursor.moveToNext();
-                componentNames.add(cursor.getString(1));
-            }
-        }
-        cursor.close();
-        database.close();
-        return componentNames;
+        return  loopThroughDatas(cursor,database);
     }
 
     public ArrayList<String> onSearchBrandsApply(String searchText) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_BRANDS + " WHERE " + BRANDS_NAME.toLowerCase() + " LIKE '" + searchText.toLowerCase() + "%'", null);
-        ArrayList<String> componentNames = new ArrayList<>();
-        if (cursor.getCount() > 0) {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                cursor.moveToNext();
-                componentNames.add(cursor.getString(1));
-            }
-        }
-        cursor.close();
-        database.close();
-        return componentNames;
+        loopThroughDatas(cursor,database);
+        return  loopThroughDatas(cursor,database);
     }
-
 
     public ArrayList<String> getDetailsComponent(String query) {
         SQLiteDatabase database = this.getReadableDatabase();
@@ -159,5 +132,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return componentNames;
+    }
+
+    private ArrayList<String> loopThroughDatas(Cursor cursor,SQLiteDatabase database){
+        ArrayList<String> componentNames = new ArrayList<>();
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                componentNames.add(cursor.getString(1));
+            }
+        }
+        cursor.close();
+        database.close();
+        return componentNames;
+    }
+
+    public ArrayList<String> getBrandsByCategoryType(String type){
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_BRANDS + " WHERE " + BRANDS_TYPE + " = '" + type+"'", null);
+        return  loopThroughDatas(cursor,database);
     }
 }
