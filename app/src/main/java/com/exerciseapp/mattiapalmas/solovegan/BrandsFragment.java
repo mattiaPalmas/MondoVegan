@@ -23,6 +23,7 @@ import java.util.List;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.text.Html.fromHtml;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_BRANDS;
 
 
 /**
@@ -48,15 +49,17 @@ public class BrandsFragment extends Fragment {
 
     private LinearLayout expandedMenuLayout, mainFragmentBrands, searchFragmentLayout;
     private ScrollView categoriesScrollView;
-    private Button bodyCareBtn, searchBtn, categoriesBtn;
+    private Button searchBtn, categoriesBtn, bodyCareBtn, bathingBtn, cosmeticsBtn, fragranceBtn, hairCareBtn, nailCareBtn, personalCareBtn, shavingSupplyBtn, SkinCareBtn, sunCareBtn, bathroomCareBtn, kitchenCareBtn, generalHousholdBtn, laundryCareBtn, officeSuppliesBtn;
     private ExpandableListView expandableListView;
     private ExpandableMenuAdapter menuAdapter;
     private List<String> listTitleHeader;
-    private HashMap<String,List<Spanned>> listHash;
+    private HashMap<String, List<Spanned>> listHash;
     private ArrayList<String> brandsList;
     private ArrayAdapter<String> adapter;
     private ListView listViewBrands;
     private SearchView searchViewBrands;
+    private ArrayList<String> brandsData;
+    private DatabaseHelper myDataBase;
 
     public BrandsFragment() {
         // Required empty public constructor
@@ -97,6 +100,7 @@ public class BrandsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initVariables();
+        addAllBrands();
         onSearchOrCategoriesCLicked();
         return view;
     }
@@ -145,7 +149,7 @@ public class BrandsFragment extends Fragment {
         listTitleHeader = new ArrayList<>();
         listHash = new HashMap<>();
         expandableListView = (ExpandableListView) mView.findViewById(R.id.expanded_menu);
-        menuAdapter = new ExpandableMenuAdapter(getActivity(),listTitleHeader,listHash);
+        menuAdapter = new ExpandableMenuAdapter(getActivity(), listTitleHeader, listHash);
         expandableListView.setAdapter(menuAdapter);
 
         searchFragmentLayout = mView.findViewById(R.id.search_fragment_layout);
@@ -158,50 +162,105 @@ public class BrandsFragment extends Fragment {
 
         brandsList = new ArrayList<>();
         listViewBrands = mView.findViewById(R.id.list_view_brands);
+
+        brandsData = new ArrayList<>();
+        myDataBase = new DatabaseHelper(getContext());
     }
 
     private void onCategoryClicked() {
-        if (categoriesScrollView.getVisibility() == View.VISIBLE){
+        if (categoriesScrollView.getVisibility() == View.VISIBLE) {
             bodyCareBtn = mView.findViewById(R.id.body_care_btn);
             bodyCareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                expandedMenuLayout.setVisibility(View.VISIBLE);
-                categoriesScrollView.setVisibility(View.GONE);
-
-                if (listHash.isEmpty()){
-                    listTitleHeader.add("Bleaching cream");
+                @Override
+                public void onClick(View view) {
+                    listHash.clear();
+                    listTitleHeader.clear();
                     listTitleHeader.add("Body Oils");
                     listTitleHeader.add("Body scrubs");
+                    listTitleHeader.add("Body Wraps");
                     listTitleHeader.add("Deodorant");
+                    listTitleHeader.add("Depilatory");
+                    listTitleHeader.add("Foot care");
                     String str1 = "";
 
-                    List<Spanned> bodyCare = new ArrayList<>();
-                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
-                    bodyCare.add(fromHtml(str1));
-
-                    listHash.put(listTitleHeader.get(0),bodyCare);
-
                     List<Spanned> bodyOils = new ArrayList<>();
-                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    str1 = "- <b>Ally's AromaRemedies</b><br>- <b>Aroma Bella</b><br>- <b>Ashi Therapy</b><br>- <b>Bubble Shack Hawaiian Soap Company</b><br>- <b>Clay Lotus</b><br>- <b>Edens Garden’s Essential Oils</b><br>- <b>Lillian Organics</b><br>- <b>Lotus Garden Botanicals</b><br>- <b>Maison de Chanvre</b><br>- <b>Moksa Organics</b><br>- <b>Tallulah Jane Natural Perfumes</b><br>- <b>Terra Dolce</b><br>- <b>Welstar Organics</b><br>- <b>Yumé Blush</b>";
                     bodyOils.add(fromHtml(str1));
-
-                    listHash.put(listTitleHeader.get(1),bodyOils);
+                    listHash.put(listTitleHeader.get(0), bodyOils);
 
                     List<Spanned> bodyScrub = new ArrayList<>();
-                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    str1 = "<b>- Alvin Connor<br>- Aromacare Victoria<br>- Bath Bomb Babes<br>- Black Tai Salt Company<br>- Bodyenrich<br>- Brittanie's Thyme<br>- Clay Lotus<br>- Evolve Skin<br>- Exuberance International Inc.<br>- Fanciful Fox, The<br>- Frank T. Ross (Nature Clean)<br>- Golden Path Alchemy<br>- Hugo Natural Products<br>- Lillian Organics<br>- Love JJ<br>- Maison Meunier<br>- Natural Salt Lamps<br>- Oribel Organics<br>- POSH Beauty Essentials<br>- Rhone Botanicals<br>- Scrub Love<br>- Terra Dolce<br> </b>";
                     bodyScrub.add(fromHtml(str1));
+                    listHash.put(listTitleHeader.get(1), bodyScrub);
 
-                    listHash.put(listTitleHeader.get(2),bodyScrub);
+                    List<Spanned> bodyWraps = new ArrayList<>();
+                    str1 = "- Mia Rose Products, Inc.<br>";
+                    bodyWraps.add(fromHtml(str1));
+                    listHash.put(listTitleHeader.get(2), bodyWraps);
 
                     List<Spanned> deodorant = new ArrayList<>();
-                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    str1 = "- Alvin Connor<br>- Amor Luminis<br>- Arnasa Naturels<br>- ATTITUDE (Bio-Spectra)<br>- Baba's Bath and Body<br>- Bali Secrets<br>- Banjara's<br>- Bare Blossom<br>- BEAUT.E<br>- BEMYFLOWER<br>- BioBella<br>- Biofilia<br>- Blissoma<br>- Blue Beautifly<br>- Body Crystal, Inc.<br>- Bonbon<br>- Botanical Babe<br>- Bubbly Moon Naturals<br>- Buck Naked Soap Company<br>- Caitlin's Super Natural<br>- Clémence et Vivien<br>- Clay Lotus<br>- Crystal Body Deodorant<br>- DAYDRY<br>- Deodorant Stones of America<br>- Down to Earth Handmade Products<br>- Eco Chic Chick<br>- Edens Garden’s Essential Oils<br>- Ellingwood Soap Company<br>- Engelshaut Cosmetics<br>- European Perfume Works Co.<br>- Everdry<br>- Evolve Skin<br>- Flurifresh (Alphamed)<br>- Foster Naturals<br>- Giraluna Cosmética<br>- Glory by Nature<br>- Good & Clean Skincare<br>- GREENBODY LLC<br>- Handmade Heroes<br>- Herban Cowboy<br>- Hippy Pits Natural Deodorant<br>- Homemade Betty<br>- Homestead Body<br>- InstaCure<br>- Kaieteur Naturals<br>- KIND-LY<br>- Kingdom Plantae<br>- Kosmolife<br>- Lip-Ink International<br>- Live Native<br>- me & you. body<br>- Meow Meow Tweet<br>- Milcu<br>- Moist Towel Services<br>- Morning Blossom Studio<br>- ms. Artisan<br>- Naked Earth<br>- Natural Scentzations<br>- Naturally Fresh Crystal Deodorant<br>- Naturally Uncommon<br>- Nokomis Naturals<br>- North Coast Organics<br>- OM made<br>- OMNITURAL SAS<br>- Organic Rosehip Skincare<br>- Organic Skin by Myriam<br>- Paper Street Soap Co.<br>- PAZ ARTESANAL<br>- pHresh Deodorant (Sparklehearts)<br>- Phyte Club<br>- Pristine Beauty<br>- Probiotic Group<br>- QyC Mexico<br>- RabbitMama Cosmetics<br>- Raven's Creek Natural Company<br>- Really Good Skin Care<br>- Reficis<br>- Rose and Jeanne<br>- Roxz Cosmetix<br>- Ruchy Skincare<br>- rue Santé<br>- Rustic MAKA<br>- SatinNaturel<br>- Savons Zébulles<br>- Schmidt's Naturals<br>- Senz Cosmetics<br>- Sexy Healthy Earthy<br>- Shiva’s Delight<br>- Sister Suds<br>- SK Pure Essentials<br>- Soapwalla Kitchen<br>- SOLSEQUIA<br>- Star Remedies B.V.<br>- Sudsatorium<br>- Sur Australis<br>- Tales of Nature<br>- The Best Deodorant In The World<br>- The Divine Company<br>- The Good Oak Soap<br>- The Salve Shoppe<br>- Thesis<br>- Thirteen Organics<br>- Touch and Such<br>- Tropic Skin Care<br>- Twinkle Apothecary<br>- Vegane Pflege<br>- Vegenero<br>- Verdura NaturAlternatives<br>- Well-in-Hand<br>- Welstar Organics<br>- Woodstock Herbal Products<br>- Zabana Essentials<br>";
                     deodorant.add(fromHtml(str1));
+                    listHash.put(listTitleHeader.get(3), deodorant);
 
-                    listHash.put(listTitleHeader.get(3),deodorant);
+                    List<Spanned> depilatory = new ArrayList<>();
+                    str1 = "- Aqua Natural<br>- AYA Cosmetics<br>- Evande Facial Care<br>- LUXURY COSMETICS<br>- Solaire Pty Ltd<br>- Sugar Phat<br>- Zue Beauty<br>";
+                    depilatory.add(fromHtml(str1));
+                    listHash.put(listTitleHeader.get(4), depilatory);
+
+                    List<Spanned> footCare = new ArrayList<>();
+                    str1 = "- Aroma Bella<br>- Aromacare Victoria<br>- Bioethique Organic Cosmetics<br>- Cactus & Ivy<br>- Clavé Body Care International, Inc.<br>- Clay Lotus<br>- Deodorant Stones of America<br>- Exuberance International Inc.<br>- KSA Jojoba<br>- Lillian Organics<br>- Masada<br>- Milcu<br>";
+                    footCare.add(fromHtml(str1));
+                    listHash.put(listTitleHeader.get(4), footCare);
+
+
+                    menuAdapter.notifyDataSetChanged();
+                    expandedMenuLayout.setVisibility(View.VISIBLE);
+                    categoriesScrollView.setVisibility(View.GONE);
                 }
-            }
-        });
+            });
+
+            bathingBtn = mView.findViewById(R.id.bathing_btn);
+            bathingBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    listHash.clear();
+                    listTitleHeader.clear();
+                    listTitleHeader.add("Bath Bombs");
+                    listTitleHeader.add("Bath Oils");
+                    listTitleHeader.add("Bath Salts");
+                    listTitleHeader.add("Body Wash");
+                    String str1 = "";
+
+                    List<Spanned> bathBombs = new ArrayList<>();
+                    str1 = "- Test<br>- Test<br>- Test";
+                    bathBombs.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(0), bathBombs);
+
+                    List<Spanned> bathOils = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    bathOils.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(1), bathOils);
+
+                    List<Spanned> bathSalts = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    bathSalts.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(2), bathSalts);
+
+                    List<Spanned> bodyWash = new ArrayList<>();
+                    str1 = "- Fair and Flawless<br>- Jolen Creme Bleach<br>- Reviva Laboratories";
+                    bodyWash.add(fromHtml(str1));
+
+                    listHash.put(listTitleHeader.get(3), bodyWash);
+                    menuAdapter.notifyDataSetChanged();
+                    expandedMenuLayout.setVisibility(View.VISIBLE);
+                    categoriesScrollView.setVisibility(View.GONE);
+                }
+            });
         }
     }
 
@@ -211,9 +270,7 @@ public class BrandsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mainFragmentBrands.setVisibility(View.GONE);
-               searchFragmentLayout.setVisibility(View.VISIBLE);
-                addAllBrands();
-                addBrandsIntoList(brandsList);
+                searchFragmentLayout.setVisibility(View.VISIBLE);
                 setOnSearchApply();
             }
         });
@@ -221,9 +278,7 @@ public class BrandsFragment extends Fragment {
         categoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainFragmentBrands.setVisibility(View.GONE);
-                categoriesScrollView.setVisibility(View.VISIBLE);
-                onCategoryClicked();
+
             }
         });
     }
@@ -234,41 +289,32 @@ public class BrandsFragment extends Fragment {
         searchViewBrands.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                filterBrandsList.clear();
-                for (String string : brandsList){
-                    if (string.toLowerCase().startsWith(s.toLowerCase())){
-                        filterBrandsList.add(string);
+                if (brandsData.size() == 0) {
+                    brandsData.add("No components found");
+                } else {
+                    brandsData = myDataBase.onSearchBrandsApply(s);
+                    if (brandsData.size() == 0) {
+                        brandsData.add("No components found");
                     }
                 }
+                setAdapterListView(brandsData);
 
-                if (filterBrandsList.size() == 0){
-                    filterBrandsList.add("No components found");
-                }
-                addBrandsIntoList(filterBrandsList);
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(searchViewBrands.getWindowToken(), 0);
-                return false;
+                imm.hideSoftInputFromWindow(searchBtn.getWindowToken(), 0);
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                filterBrandsList.clear();
+                if (s.length() == 0) {
+                    addAllBrands();
+                } else {
+                    brandsData = myDataBase.onSearchBrandsApply(s);
 
-                for (String string : brandsList){
-                    if (string.toLowerCase().startsWith(s.toLowerCase())){
-                        filterBrandsList.add(string);
+                    if (brandsData.size() == 0) {
+                        brandsData.add("No components found");
                     }
-                }
-
-                if (filterBrandsList.size() == 0){
-                    filterBrandsList.add("No components found");
-                }
-
-                addBrandsIntoList(filterBrandsList);
-
-                if (s.length() == 0){
-                    addBrandsIntoList(brandsList);
-                    return false;
+                    setAdapterListView(brandsData);
                 }
                 return false;
             }
@@ -282,8 +328,13 @@ public class BrandsFragment extends Fragment {
     }
 
     private void addAllBrands() {
-        brandsList.add("Fair and Flawless");
-        brandsList.add("Jolen Creme Bleach");
-        brandsList.add("Reviva Laboratories");
+        brandsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_BRANDS);
+        setAdapterListView(brandsData);
+    }
+
+    private void setAdapterListView(ArrayList<String> arrayStrings) {
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, R.id.itemTextView, arrayStrings);
+        listViewBrands.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }

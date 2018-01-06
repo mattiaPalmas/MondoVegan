@@ -1,13 +1,10 @@
 package com.exerciseapp.mattiapalmas.solovegan;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_2;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_7;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_NAME;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COMPONENTS_NAME;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COMPONENTS_TYPE;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_COMPONENTS;
 
 
 /**
@@ -175,7 +171,7 @@ public class ENumberFragment extends Fragment {
     }
 
     private void setListComponents() {
-        componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'eNumber'");
+        componentsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_TYPE + " = 'eNumber'");
         setAdapterListView(componentsData);
     }
 
@@ -214,7 +210,7 @@ public class ENumberFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String searchText) {
-                componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'eNumber'");
+                componentsData = myDataBase.onSearchComponentsApply(searchText, " AND TYPE = 'eNumber'");
                 if (componentsData.size() == 0) {
                     componentsData.add("No components found");
                 }
@@ -229,10 +225,10 @@ public class ENumberFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String searchText) {
                 if (searchText.length() == 0) {
-                    componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'eNumber'");
+                    componentsData = myDataBase.onSearchComponentsApply(searchText, " AND TYPE = 'eNumber'");
                     setAdapterListView(componentsData);
                 } else {
-                    componentsData = myDataBase.onSearchApply(searchText, " AND TYPE = 'eNumber'");
+                    componentsData = myDataBase.onSearchComponentsApply(searchText, " AND TYPE = 'eNumber'");
 
                     if (componentsData.size() == 0) {
                         componentsData.add("No components found");
@@ -256,7 +252,7 @@ public class ENumberFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Object obj = listView.getAdapter().getItem(position);
-                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + obj.toString() + "'");
+                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_NAME + " = '" + obj.toString() + "'");
 
                 nameComponentTextView.setText(componentsData.get(0));
                 descriptionTextView.setText(componentsData.get(1));

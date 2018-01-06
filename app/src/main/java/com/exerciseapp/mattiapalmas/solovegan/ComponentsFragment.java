@@ -1,13 +1,10 @@
 package com.exerciseapp.mattiapalmas.solovegan;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_2;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COL_7;
-import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_NAME;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COMPONENTS_NAME;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.COMPONENTS_TYPE;
+import static com.exerciseapp.mattiapalmas.solovegan.DatabaseHelper.TABLE_COMPONENTS;
 
 
 /**
@@ -176,7 +172,7 @@ public class ComponentsFragment extends Fragment {
     }
 
     private void setListComponents() {
-        componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food' OR " + COL_7 + " = 'fabrics' OR " + COL_7 + " = 'products'");
+        componentsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_TYPE + " = 'food' OR " + COMPONENTS_TYPE + " = 'fabrics' OR " + COMPONENTS_TYPE + " = 'products'");
         setAdapterListView(componentsData);
     }
 
@@ -185,7 +181,7 @@ public class ComponentsFragment extends Fragment {
         allSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food' OR " + COL_7 + " = 'fabrics' OR " + COL_7 + " = 'products'");
+                componentsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_TYPE + " = 'food' OR " + COMPONENTS_TYPE + " = 'fabrics' OR " + COMPONENTS_TYPE + " = 'products'");
                 setAdapterListView(componentsData);
                 menuItemSelected = 0;
                 addDifferentColorToItemSelected();
@@ -196,7 +192,7 @@ public class ComponentsFragment extends Fragment {
         foodSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'food'");
+                componentsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_TYPE + " = 'food'");
                 setAdapterListView(componentsData);
                 menuItemSelected = 1;
                 addDifferentColorToItemSelected();
@@ -207,7 +203,7 @@ public class ComponentsFragment extends Fragment {
         fabricsSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'fabrics'");
+                componentsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_TYPE + " = 'fabrics'");
                 setAdapterListView(componentsData);
                 menuItemSelected = 2;
                 addDifferentColorToItemSelected();
@@ -218,7 +214,7 @@ public class ComponentsFragment extends Fragment {
         productsSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                componentsData = myDataBase.getRecordsFromDataBase("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_7 + " = 'product'");
+                componentsData = myDataBase.getAllDataFromDataBase("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_TYPE + " = 'product'");
                 setAdapterListView(componentsData);
                 menuItemSelected = 3;
                 addDifferentColorToItemSelected();
@@ -228,26 +224,26 @@ public class ComponentsFragment extends Fragment {
     }
 
     private void addDifferentColorToItemSelected() {
-        switch (menuItemSelected){
-            case 0 :
+        switch (menuItemSelected) {
+            case 0:
                 allSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
                 foodSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 productsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 break;
-            case 1 :
+            case 1:
                 allSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 foodSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
                 fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 productsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 break;
-            case 2 :
+            case 2:
                 allSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 foodSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.kakichiaro));
                 productsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 break;
-            case 3 :
+            case 3:
                 allSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 foodSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
                 fabricsSubMenu.setBackgroundColor(getResources().getColor(R.color.zafferanoProfondo));
@@ -283,7 +279,7 @@ public class ComponentsFragment extends Fragment {
                     if (componentsData.size() == 0) {
                         componentsData.add("No components found");
                     }
-                        setAdapterListView(componentsData);
+                    setAdapterListView(componentsData);
                 }
                 return false;
             }
@@ -291,18 +287,18 @@ public class ComponentsFragment extends Fragment {
     }
 
     private void setComponentsDataCheckForType(String searchText) {
-        switch (menuItemSelected){
-            case 0 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND (" + COL_7 + " = 'food' OR " + COL_7 + " = 'fabrics' OR " + COL_7 + " = 'products')");
+        switch (menuItemSelected) {
+            case 0:
+                componentsData = myDataBase.onSearchComponentsApply(searchText, " AND (" + COMPONENTS_TYPE + " = 'food' OR " + COMPONENTS_TYPE + " = 'fabrics' OR " + COMPONENTS_TYPE + " = 'products')");
                 break;
-            case 1 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND " + COL_7 + " = 'food'");
+            case 1:
+                componentsData = myDataBase.onSearchComponentsApply(searchText, " AND " + COMPONENTS_TYPE + " = 'food'");
                 break;
-            case 2 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND " + COL_7 + " = 'fabrics'");
+            case 2:
+                componentsData = myDataBase.onSearchComponentsApply(searchText, " AND " + COMPONENTS_TYPE + " = 'fabrics'");
                 break;
-            case 3 :
-                componentsData = myDataBase.onSearchApply(searchText, " AND " + COL_7 + " = 'products'");
+            case 3:
+                componentsData = myDataBase.onSearchComponentsApply(searchText, " AND " + COMPONENTS_TYPE + " = 'products'");
                 break;
         }
     }
@@ -318,7 +314,7 @@ public class ComponentsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // When clicked, show a toast with the TextView text
                 Object obj = listView.getAdapter().getItem(position);
-                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + obj.toString() + "'");
+                componentsData = myDataBase.getDetailsComponent("SELECT * FROM " + TABLE_COMPONENTS + " WHERE " + COMPONENTS_NAME + " = '" + obj.toString() + "'");
 
                 nameComponentTextView.setText(componentsData.get(0));
                 descriptionTextView.setText(componentsData.get(1));
@@ -353,7 +349,7 @@ public class ComponentsFragment extends Fragment {
                         mainLayout.setVisibility(View.VISIBLE);
                         componentSelectLayout.setVisibility(View.GONE);
                         descriptionTextView.setText("");
-                        descriptionTextView.scrollTo(1,1);
+                        descriptionTextView.scrollTo(1, 1);
                     }
                 });
             }

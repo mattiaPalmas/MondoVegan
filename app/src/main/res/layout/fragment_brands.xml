@@ -72,15 +72,15 @@
                     android:layout_height="match_parent"
                     android:text="Body Care"/>
                 <Button
-                    android:id="@+id/nail_care_btn"
+                    android:id="@+id/bathing_btn"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
-                    android:text="Nail Care"/>
+                    android:text="Bathing Supply"/>
                 <Button
-                    android:id="@+id/personal_care_btn"
+                    android:id="@+id/cosmetics_btn"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
-                    android:text="Personal Care"/>
+                    android:text="Cosmetics"/>
             </LinearLayout>
 
             <LinearLayout
@@ -88,6 +88,33 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
+                <Button
+                    android:id="@+id/fragrance_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Fragrance"/>
+                <Button
+                    android:id="@+id/hair_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Hair Care"/>
+                <Button
+                    android:id="@+id/nail_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Nail Care"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/personal_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Personal Care"/>
                 <Button
                     android:id="@+id/shaving_supply_btn"
                     android:layout_width="110dp"
@@ -98,11 +125,6 @@
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:text="Skin Care"/>
-                <Button
-                    android:id="@+id/sun_care_btn"
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"
-                    android:text="Sun Care"/>
             </LinearLayout>
 
             <LinearLayout
@@ -110,6 +132,11 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
+                <Button
+                    android:id="@+id/sun_care_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="Sun Care"/>
                 <Button
                     android:id="@+id/bathroom_care_btn"
                     android:layout_width="110dp"
@@ -120,11 +147,6 @@
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:text="Kitchen care"/>
-                <Button
-                    android:id="@+id/general_household_btn"
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"
-                    android:text="General household"/>
             </LinearLayout>
 
             <LinearLayout
@@ -132,6 +154,11 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
+                <Button
+                    android:id="@+id/general_household_btn"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="General household"/>
                 <Button
                     android:id="@+id/laundry_care_btn"
                     android:layout_width="110dp"
@@ -142,25 +169,6 @@
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:text="Office supplies"/>
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"/>
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"/>
-                <Button
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
